@@ -1,13 +1,10 @@
 'use client';
 
-import { useState } from 'react';
-import { Modal } from '@/components/ui/Modal/Modal';
-import { ContactForm } from '@/components/ui/ContactForm/ContactForm';
+import { ContactModal } from '@/components/ui/ContactModal/ContactModal';
 import { Button } from '@/components/ui/Button/Button';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <div className="space-y-16">
       {/* Hero Section */}
@@ -22,10 +19,16 @@ export default function Home() {
             методы, экологичные средства, гарантия результата.
           </Lead>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="btn-primary">Заказать услугу</Button>
-            <Button variant="outline" className="btn-outline">
-              Получить консультацию
-            </Button>
+            <ContactModal
+              trigger={<Button className="btn-primary">Заказать услугу</Button>}
+            />
+            <ContactModal
+              trigger={
+                <Button variant="outline" className="btn-outline">
+                  Получить консультацию
+                </Button>
+              }
+            />
           </div>
         </div>
       </section>
@@ -143,15 +146,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Modal */}
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        title="Связаться с нами"
-      >
-        <ContactForm showTitle={false} onClose={() => setIsModalOpen(false)} />
-      </Modal>
     </div>
   );
 }

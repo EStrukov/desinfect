@@ -1,36 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aether Core - Дезинфекция и дезинсекция
 
-## Getting Started
+Современный веб-сайт для компании по дезинфекции и дезинсекции с использованием Next.js, TypeScript и Tailwind CSS.
 
-First, run the development server:
+## 🚀 Функциональность
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Адаптивный дизайн для всех устройств
+- Контактные формы с уведомлениями в Telegram
+- Модальные окна для быстрой связи
+- Компонентная архитектура
+- TypeScript для типизации
+- ESLint для линтинга кода
+
+## 📋 Настройка Telegram бота для уведомлений
+
+### 1. Создание бота
+
+1. Откройте Telegram и найдите @BotFather
+2. Отправьте команду `/newbot`
+3. Следуйте инструкциям для создания бота
+4. Скопируйте токен бота (он выглядит как `123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11`)
+
+### 2. Получение Chat ID
+
+**Вариант 1: Личный чат с ботом**
+
+1. Отправьте любое сообщение вашему боту
+2. Откройте в браузере: `https://api.telegram.org/bot<YourBOTToken>/getUpdates`
+3. Найдите `"chat":{"id":123456789}` в ответе
+4. Скопируйте значение `id`
+
+**Вариант 2: Групповой чат**
+
+1. Добавьте бота в группу как администратора
+2. Отправьте любое сообщение в группу
+3. Откройте: `https://api.telegram.org/bot<YourBOTToken>/getUpdates`
+4. Найдите chat id группы (обычно отрицательное число)
+
+### 3. Настройка переменных окружения
+
+Создайте файл `.env.local` в корне проекта:
+
+```env
+TELEGRAM_BOT_TOKEN=ваш_токен_бота
+TELEGRAM_CHAT_ID=ваш_chat_id
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 4. Тестирование
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Отправьте тестовую заявку через любую форму на сайте. Вы должны получить уведомление в Telegram.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠 Технологии
 
-## Learn More
+- **Next.js 15** - React фреймворк
+- **TypeScript** - Типизация
+- **Tailwind CSS** - Стилизация
+- **ESLint** - Линтинг
+- **Husky** - Pre-commit хуки
 
-To learn more about Next.js, take a look at the following resources:
+## 📦 Установка и запуск
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Установка зависимостей
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Запуск в режиме разработки
+npm run dev
 
-## Deploy on Vercel
+# Сборка для продакшена
+npm run build
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Запуск продакшена
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📜 Скрипты
+
+- `npm run dev` - запуск разработки
+- `npm run build` - сборка проекта
+- `npm run start` - запуск продакшена
+- `npm run type-check` - проверка типов TypeScript
+- `npm run lint` - линтинг кода
+
+## 📁 Структура проекта
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── api/               # API маршруты
+│   │   └── contact/       # API для контактных форм
+│   ├── globals.scss       # Глобальные стили
+│   ├── layout.tsx         # Корневой layout
+│   └── page.tsx           # Главная страница
+├── components/
+│   ├── ui/                # UI компоненты
+│   │   ├── Button/        # Компонент кнопки
+│   │   ├── ContactForm/   # Форма контактов
+│   │   ├── ContactModal/  # Модальное окно с формой
+│   │   ├── FormField/     # Универсальное поле формы
+│   │   ├── Modal/         # Базовое модальное окно
+│   │   └── Typography/    # Типографические компоненты
+│   └── layout/            # Layout компоненты
+└── lib/                   # Утилиты и константы
+```
+
+## 🎨 Кастомизация
+
+### Цветовая схема
+
+Цвета определены в `tailwind.config.ts`:
+
+- Primary: Синий (#3B82F6)
+- Secondary: Зеленый (#10B981)
+- Accent: Оранжевый (#F59E0B)
+
+### Шрифты
+
+Используется системный стек шрифтов для оптимальной производительности.
+
+## 📧 Контакты
+
+Для вопросов по проекту обращайтесь в Telegram или создайте issue в репозитории.

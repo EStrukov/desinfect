@@ -1,6 +1,8 @@
 import React from 'react';
+import Link from 'next/link';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button/Button';
+import { ContactModal } from '@/components/ui/ContactModal/ContactModal';
 
 export default function Services() {
   return (
@@ -197,10 +199,16 @@ export default function Services() {
             стоимости услуг
           </Lead>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="btn-primary">Заказать звонок</Button>
-            <Button variant="outline" className="btn-outline">
-              Посмотреть цены
-            </Button>
+            <ContactModal
+              trigger={
+                <Button className="btn-primary">Связаться с нами</Button>
+              }
+            />
+            <Link href="/pricing">
+              <Button variant="outline" className="btn-outline">
+                Посмотреть цены
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

@@ -1,11 +1,11 @@
 import React from 'react';
 let taskQueue = Promise.resolve();
 
-const runner = (task) => {
+const runner = (task: () => Promise<void>) => {
   taskQueue = taskQueue.then(() => task());
 };
 
-const delay = (t) => new Promise((r) => setTimeout(r, t));
+const delay = (t: number) => new Promise<void>((r) => setTimeout(r, t));
 
 const Test = () => {
   const t1 = async () => {
@@ -13,6 +13,8 @@ const Test = () => {
 
     console.log('t1');
   };
+
+  console.log(typeof t1);
 
   const t2 = async () => {
     await delay(1000);

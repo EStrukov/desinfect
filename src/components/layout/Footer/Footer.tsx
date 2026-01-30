@@ -11,7 +11,7 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             {/* Бренд */}
             <div className="md:col-span-2">
-              <Logo />
+              <Logo variant="footer" />
               <p className="text-gray-600 text-sm mb-6 max-w-md">
                 Профессиональная дезинфекция и дезинсекция в Москве и МО.
                 Гарантия качества и безопасности для вашего здоровья.

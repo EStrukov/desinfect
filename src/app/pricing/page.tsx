@@ -1,6 +1,7 @@
 import React from 'react';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button/Button';
+import { ContactModal } from '@/components/ui/ContactModal/ContactModal';
 import Test from '@/components/ui/Button/test';
 
 export default function Pricing() {
@@ -49,7 +50,11 @@ export default function Pricing() {
                 </li>
               </ul>
 
-              <Button className="w-full btn-primary">Заказать</Button>
+              <ContactModal
+                trigger={
+                  <Button className="w-full btn-primary">Заказать</Button>
+                }
+              />
             </div>
 
             <div className="card relative border-2 border-secondary">
@@ -90,9 +95,13 @@ export default function Pricing() {
                 </li>
               </ul>
 
-              <Button className="w-full bg-secondary hover:bg-secondary-dark">
-                Заказать
-              </Button>
+              <ContactModal
+                trigger={
+                  <Button className="w-full bg-secondary hover:bg-secondary-dark">
+                    Заказать
+                  </Button>
+                }
+              />
             </div>
 
             <div className="card">
@@ -127,7 +136,9 @@ export default function Pricing() {
                 </li>
               </ul>
 
-              <Button className="w-full">Заказать</Button>
+              <ContactModal
+                trigger={<Button className="w-full">Заказать</Button>}
+              />
             </div>
 
             <div className="card">
@@ -158,7 +169,9 @@ export default function Pricing() {
                 </li>
               </ul>
 
-              <Button className="w-full">Заказать</Button>
+              <ContactModal
+                trigger={<Button className="w-full">Заказать</Button>}
+              />
             </div>
 
             <div className="card">
@@ -189,7 +202,9 @@ export default function Pricing() {
                 </li>
               </ul>
 
-              <Button className="w-full">Заказать</Button>
+              <ContactModal
+                trigger={<Button className="w-full">Заказать</Button>}
+              />
             </div>
 
             <div className="card">
@@ -220,7 +235,9 @@ export default function Pricing() {
                 </li>
               </ul>
 
-              <Button className="w-full">Заказать</Button>
+              <ContactModal
+                trigger={<Button className="w-full">Заказать</Button>}
+              />
             </div>
           </div>
         </div>

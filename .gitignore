@@ -95,6 +95,3 @@ temp/
 
 # Yarn Integrity file
 .yarn-integrity
-
-# Husky hooks (uncomment if you don't want to commit hooks)
-.husky/

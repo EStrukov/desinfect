@@ -39,7 +39,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Базовые классы - более минималистичные
     const baseClasses =
-      'inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50';
+      'inline-flex items-center justify-center rounded-md font-medium transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 active:scale-100 active:shadow-lg active:brightness-95 focus:outline-none focus:ring-0';
 
     return (
       <button
@@ -47,13 +47,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           baseClasses,
           variantClasses[variant],
           sizeClasses[size],
-          className
+          className,
         )}
         ref={ref}
         {...props}
       />
     );
-  }
+  },
 );
 
 Button.displayName = 'Button';
