@@ -8,8 +8,8 @@ import { Header } from '@/components/layout/Header/Header';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'AetherCore - Modern Next.js Template',
-  description: 'Next.js 16 + TypeScript + Tailwind CSS starter',
+  title: 'Дезинфект',
+  description: 'Избавим вас от мелких и больших неприятностей!',
 };
 
 export default function RootLayout({

@@ -8,7 +8,7 @@ const AboutPage = () => {
       {/* Hero Section */}
       <section className="text-center section-padding bg-gradient-to-br from-primary-light to-secondary-light">
         <div className="max-w-4xl mx-auto px-4">
-          <H1 className="mb-6">О компании Aether</H1>
+          <H1 className="mb-6">О компании Дезинфект</H1>
           <Lead className="mb-8 max-w-3xl mx-auto">
             Мы специализируемся на профессиональной дезинфекции и дезинсекции
             более 10 лет. Наша команда экспертов обеспечивает полную защиту от

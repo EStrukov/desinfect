@@ -13,8 +13,8 @@ export function Footer() {
             <div className="md:col-span-2">
               <Logo variant="footer" />
               <p className="text-gray-600 text-sm mb-6 max-w-md">
-                Профессиональная дезинфекция и дезинсекция в Москве и МО.
-                Гарантия качества и безопасности для вашего здоровья.
+                Профессиональная дезинфекция и дезинсекция в Минске. Гарантия
+                качества и безопасности для вашего здоровья.
               </p>
               <div className="flex space-x-4">
                 <a
