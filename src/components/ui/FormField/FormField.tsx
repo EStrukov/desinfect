@@ -40,10 +40,10 @@ export const FormField = forwardRef<
     ref,
   ) => {
     const baseInputClasses =
-      'w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors';
+      'w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500';
 
     const labelClasses =
-      'block text-sm font-medium text-gray-700 mb-2 text-left';
+      'block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 text-left';
 
     return (
       <div className={className}>

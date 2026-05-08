@@ -1,87 +1,151 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Дизайн-система дезинфектора */
+/* Дизайн-система */
 :root {
-  /* Основная палитра */
-  --color-primary: #2563eb;      /* Синий - доверие */
+  /* Основная палитра — светлая тема */
+  --color-primary: #2563eb;
   --color-primary-light: #dbeafe;
   --color-primary-dark: #1d4ed8;
 
-  --color-secondary: #16a34a;    /* Зеленый - экология */
+  --color-secondary: #16a34a;
   --color-secondary-light: #dcfce7;
   --color-secondary-dark: #15803d;
 
-  --color-accent: #f59e0b;       /* Оранжевый - акцент */
+  --color-accent: #f59e0b;
   --color-accent-light: #fef3c7;
   --color-accent-dark: #d97706;
 
-  /* Нейтральные цвета */
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  /* Нейтральные */
+  --color-bg: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-card: #ffffff;
+  --color-border: #e5e7eb;
 
-  /* Семантические цвета */
-  --color-success: var(--color-secondary);
-  --color-success-light: var(--color-secondary-light);
-  --color-warning: var(--color-accent);
-  --color-error: #ef4444;
-  --color-info: var(--color-primary);
-
-  /* Тени */
   --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 
-  /* Радиусы */
   --radius-sm: 0.25rem;
   --radius-md: 0.375rem;
   --radius-lg: 0.5rem;
   --radius-xl: 0.75rem;
-
-  /* Отступы */
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 0.75rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
 }
 
+.dark {
+  --color-primary: #3b82f6;
+  --color-primary-light: #1e3a5f;
+  --color-primary-dark: #60a5fa;
 
+  --color-secondary: #22c55e;
+  --color-secondary-light: #14532d;
+  --color-secondary-dark: #4ade80;
+
+  --color-accent: #fbbf24;
+  --color-accent-light: #5c4106;
+  --color-accent-dark: #fcd34d;
+
+  --color-bg: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-text: #f1f5f9;
+  --color-text-secondary: #94a3b8;
+  --color-card: #1e293b;
+  --color-border: #334155;
+
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+}
 
 /* Утилитарные классы */
-.shadow-app { box-shadow: var(--shadow-md); }
-.rounded-app { border-radius: var(--radius-md); }
+.shadow-app {
+  box-shadow: var(--shadow-md);
+}
 
-/* Компонентные стили */
+.rounded-app {
+  border-radius: var(--radius-md);
+}
+
+/* Компонентные стили — без @apply для избежания проблем с форматером */
 .btn-primary {
-  @apply bg-primary text-white px-6 py-3 rounded-app font-medium shadow-sm hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-primary);
 }
 
 .btn-secondary {
-  @apply bg-secondary text-white px-6 py-3 rounded-app font-medium shadow-sm hover:bg-secondary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2;
+  background-color: var(--color-secondary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-dark);
 }
 
 .btn-outline {
-  @apply border-2 border-primary text-primary px-6 py-3 rounded-app font-medium hover:bg-primary hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  background-color: transparent;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary);
+  color: white;
 }
 
 .card {
-  @apply bg-white rounded-app shadow-app border border-gray-200 p-6;
+  background-color: var(--color-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s ease;
 }
 
 .section-padding {
-  @apply py-16 md:py-20 lg:py-24;
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 5rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 6rem 0;
+  }
 }
 
 @layer base {
@@ -133,11 +197,13 @@
 
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
+
   body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig"1, "calt"1;
   }
 }
 
@@ -151,6 +217,7 @@
       opacity: 0;
       transform: translateY(10px);
     }
+
     to {
       opacity: 1;
       transform: translateY(0);
@@ -160,12 +227,15 @@
 
 body {
   overflow: hidden;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Кастомный скролл для основного контента */
+/* Кастомный скролл */
 .main-content-scroll {
   scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 #f1f5f9;
+  scrollbar-color: var(--color-border) var(--color-bg-secondary);
 }
 
 .main-content-scroll::-webkit-scrollbar {
@@ -173,15 +243,15 @@ body {
 }
 
 .main-content-scroll::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-bg-secondary);
   border-radius: 4px;
 }
 
 .main-content-scroll::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+  background-color: var(--color-border);
   border-radius: 4px;
 }
 
 .main-content-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: #94a3b8;
+  background-color: var(--color-text-secondary);
 }

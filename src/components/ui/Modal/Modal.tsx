@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { X } from 'lucide-react';
-import { ContactForm } from '@/components/ui/ContactForm/ContactForm';
 
 interface ModalProps {
   isOpen: boolean;
@@ -50,19 +49,19 @@ export function Modal({
       />
 
       {/* Modal */}
-      <div className="relative bg-white rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+      <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">{title}</h2>
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{title}</h2>
           {showCloseButton &&
             (customCloseButton ? (
               customCloseButton
             ) : (
               <button
                 onClick={onClose}
-                className="p-1 hover:bg-gray-100 rounded-lg transition-colors"
+                className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
-                <X className="w-5 h-5 text-gray-500" />
+                <X className="w-5 h-5 text-gray-500 dark:text-gray-400" />
               </button>
             ))}
         </div>

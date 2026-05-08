@@ -7,12 +7,12 @@ export const contactInfo = {
   },
   workHours: {
     weekdays: 'Пн-Пт: 9:00 - 18:00',
-    weekends: 'Сб-Вс: Выходной',
+    weekends: 'Сб-Вс: По договорённости',
     emergency: '',
   },
   social: {
-    vk: '#',
-    telegram: '#',
-    instagram: '#',
+    vk: 'https://vk.com/desinfect',
+    telegram: 'https://t.me/desinfect',
+    instagram: 'https://instagram.com/desinfect',
   },
 } as const;
