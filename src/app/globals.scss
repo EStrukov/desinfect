@@ -291,3 +291,26 @@ body {
 .animate-pulse-scale {
   animation: pulse-scale 1.5s ease-in-out infinite;
 }
+
+/* src/app/globals.css */
+
+/* Скрыть скролл-бар для всей страницы */
+html {
+  overflow-y: scroll;
+}
+
+/* Для WebKit браузеров (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* Для Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* Для IE и Edge старых версий */
+body {
+  -ms-overflow-style: none;
+}

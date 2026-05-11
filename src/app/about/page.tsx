@@ -70,7 +70,7 @@ const AboutPage = () => {
 
 
       {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
+      {/* <section className="section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
         <div className="text-center max-w-3xl mx-auto px-4">
           <H2 className="mb-4">Готовы к сотрудничеству?</H2>
           <Lead className="mb-8">
@@ -84,7 +84,7 @@ const AboutPage = () => {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 };
