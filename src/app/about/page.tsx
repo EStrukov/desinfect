@@ -1,6 +1,5 @@
 import React from 'react';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
-import { Button } from '@/components/ui/Button/Button';
 import { CheckCircle, Globe, Clock } from 'lucide-react';
 
 const AboutPage = () => {

@@ -11,8 +11,51 @@ import { FloatingContactButton } from '@/components/ui/FloatingContactButton/Flo
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Дезинфект',
-  description: 'Избавим вас от мелких и больших неприятностей!',
+  title: {
+    default: 'Дезинфект | Профессиональная дезинфекция, дезинсекция и дератизация',
+    template: '%s | Дезинфект',
+  },
+  description: 'Избавим вас от мелких и больших неприятностей! Профессиональная обработка помещений от насекомых, грызунов и бактерий. Гарантия качества. Работаем по Минску и области.',
+  keywords: 'дезинфекция, дезинсекция, дератизация, уничтожение тараканов, уничтожение клопов, обработка от грызунов, Минск',
+  authors: [{ name: 'Дезинфект' }],
+  metadataBase: new URL('https://estrukov.github.io/desinfect'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Дезинфект | Профессиональная обработка помещений',
+    description: 'Избавим вас от мелких и больших неприятностей!',
+    url: 'https://estrukov.github.io/desinfect',
+    siteName: 'Дезинфект',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Дезинфект — профессиональная обработка',
+      },
+    ],
+    locale: 'ru_RU',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Дезинфект | Профессиональная обработка',
+    description: 'Избавим вас от мелких и больших неприятностей!',
+    images: ['/twitter-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
+  verification: {
+    google: 'your-google-verification-code',
+    yandex: 'your-yandex-verification-code',
+  },
 };
 
 export default function RootLayout({
