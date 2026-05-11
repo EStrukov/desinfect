@@ -75,7 +75,7 @@ export function Footer() {
                   <Phone className="w-4 h-4 mr-2 text-green-600 dark:text-green-400" />
                               <a
               href={`tel:${contactInfo.phone}`}
-              className="hidden md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
+              className="md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
             >
               {contactInfo.phone}
             </a>
@@ -85,7 +85,7 @@ export function Footer() {
                   <Mail className="w-4 h-4 mr-2 text-blue-600 dark:text-blue-400" />
                   <a
                 href={`mailto:${contactInfo.email}`}
-              className="hidden md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
+              className="md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
               >
                 {contactInfo.email}
               </a>
@@ -104,7 +104,7 @@ export function Footer() {
               <p className="text-sm text-gray-500">
                 © {new Date().getFullYear()} Дезинфект. Все права защищены.
               </p>
-              <div className="flex gap-6 text-sm text-gray-500">
+              <div className="flex flex-col sm:flex-row gap-6 text-sm text-gray-500 items-center">
                 <Link
                   href="/about"
                   className="hover:text-primary dark:hover:text-blue-400 transition-colors"

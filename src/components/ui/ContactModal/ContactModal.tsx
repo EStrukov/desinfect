@@ -8,17 +8,24 @@ interface ContactModalProps {
   title?: string;
   trigger?: ReactNode;
   showTitle?: boolean;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 export function ContactModal({
   title = 'Связаться с нами',
   trigger,
   showTitle = false,
+  isOpen: externalIsOpen,
+  onClose: externalOnClose,
 }: ContactModalProps) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
 
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
+  const isOpen = externalIsOpen !== undefined ? externalIsOpen : internalIsOpen;
+  const closeModal = externalOnClose || (() => setInternalIsOpen(false));
+  const openModal = () => {
+    if (externalIsOpen === undefined) setInternalIsOpen(true);
+  };
 
   return (
     <>
@@ -29,31 +36,4 @@ export function ContactModal({
       </Modal>
     </>
   );
-}
-
-// Hook for imperative control
-export function useContactModal() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => setIsOpen(true);
-  const closeModal = () => setIsOpen(false);
-
-  const ModalComponent = ({
-    title = 'Связаться с нами',
-    showTitle = false,
-  }: {
-    title?: string;
-    showTitle?: boolean;
-  }) => (
-    <Modal isOpen={isOpen} onClose={closeModal} title={title}>
-      <ContactForm showTitle={showTitle} onClose={closeModal} />
-    </Modal>
-  );
-
-  return {
-    openModal,
-    closeModal,
-    isOpen,
-    ModalComponent,
-  };
 }

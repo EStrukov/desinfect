@@ -19,7 +19,7 @@ export const Sidebar = memo(function Sidebar() {
 
   return (
     <aside
-      className={`fixed left-0 top-16 h-[calc(100vh-64px)] bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 z-40 transition-[width] duration-300 ease-in-out ${
+      className={`fixed left-0 top-16 h-[calc(100vh-64px)] bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 z-40 transition-[width] duration-100 ease-in-out ${
         isExpanded ? 'w-48' : 'w-16'
       }`}
       onMouseEnter={() => setIsExpanded(true)}
@@ -38,7 +38,6 @@ export const Sidebar = memo(function Sidebar() {
                 href={item.href}
                 className={`
                   relative flex items-center h-10 w-full text-sm font-medium transition-colors duration-200
-                  ${isExpanded ? 'rounded-lg' : ''}
                   ${
                     isActive
                       ? 'bg-primary/10 dark:bg-primary/20 text-primary dark:text-blue-400'
