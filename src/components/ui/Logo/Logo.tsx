@@ -32,10 +32,10 @@ export function Logo({ variant = 'header' }: LogoProps) {
     <div className="flex items-center gap-3 flex-shrink-0">
       <Link href="/" className="flex items-center gap-3 group">
         <Image
-          src="/assets/logo-horizontal.webp"
+          src="/assets/logo.webp"
           alt="Дезинфект"
           width={160}
-          height={40}
+          height={160}
           className="h-8 md:h-10 w-auto object-contain"
         />
       </Link>
