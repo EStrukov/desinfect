@@ -29,9 +29,9 @@ export const metadata: Metadata = {
     siteName: 'Дезинфект',
     images: [
       {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
+        url: '/og.png',
+        width: 1734,
+        height: 907,
         alt: 'Дезинфект — профессиональная обработка',
       },
     ],
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Дезинфект | Профессиональная обработка',
     description: 'Избавим вас от мелких и больших неприятностей!',
-    images: ['/twitter-image.jpg'],
+    images: ['/og.png'],
   },
   robots: {
     index: true,
