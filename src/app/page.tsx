@@ -4,7 +4,7 @@ import { ContactModal } from '@/components/ui/ContactModal/ContactModal';
 import { Button } from '@/components/ui/Button/Button';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 import { CheckCircle, Zap, Heart } from 'lucide-react';
-import { contactInfo } from '@/lib/contacts';
+import { AnimatedCard } from '@/components/ui/AnimatedCard/AnimatedCard';
 
 export default function Home() {
   return (
@@ -24,11 +24,11 @@ export default function Home() {
           </Lead>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <ContactModal
-              trigger={<Button className="btn-primary">Заказать услугу</Button>}
+              trigger={<Button variant="default">Заказать услугу</Button>}
             />
             <ContactModal
               trigger={
-                <Button variant="outline" className="btn-outline">
+                <Button variant="outline">
                   Получить консультацию
                 </Button>
               }
@@ -47,29 +47,29 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="card text-center">
+          <AnimatedCard className="card text-center" index={0}>
             <div className="w-16 h-16 bg-green-100 dark:bg-green-900/40 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="w-8 h-8 text-green-600 dark:text-green-400" />
             </div>
             <H3 className="mb-2">Гарантия качества</H3>
             <P>Предоставляем гарантию на все виды работ до 6 месяцев</P>
-          </div>
+          </AnimatedCard>
 
-          <div className="card text-center">
+          <AnimatedCard className="card text-center" index={1}>
             <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/40 rounded-full flex items-center justify-center mx-auto mb-4">
               <Zap className="w-8 h-8 text-blue-600 dark:text-blue-400" />
             </div>
             <H3 className="mb-2">Быстро и эффективно</H3>
             <P>Современное оборудование и проверенные методики</P>
-          </div>
+          </AnimatedCard>
 
-          <div className="card text-center">
+          <AnimatedCard className="card text-center" index={2}>
             <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/40 rounded-full flex items-center justify-center mx-auto mb-4">
               <Heart className="w-8 h-8 text-amber-600 dark:text-amber-400" />
             </div>
             <H3 className="mb-2">Безопасные средства</H3>
             <P>Используем только сертифицированные и экологичные препараты</P>
-          </div>
+          </AnimatedCard>
         </div>
       </section>
 
@@ -77,22 +77,22 @@ export default function Home() {
       <section className="py-16 bg-gray-50 dark:bg-gray-800/50 border-y border-gray-100 dark:border-gray-700">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
+            <AnimatedCard index={0}>
               <div className="text-4xl font-bold text-primary dark:text-blue-400 mb-2">5000+</div>
               <div className="text-gray-600 dark:text-gray-400">Довольных клиентов</div>
-            </div>
-            <div>
+            </AnimatedCard>
+            <AnimatedCard index={1}>
               <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">10+</div>
               <div className="text-gray-600 dark:text-gray-400">Лет опыта</div>
-            </div>
-            <div>
+            </AnimatedCard>
+            <AnimatedCard index={2}>
               <div className="text-4xl font-bold text-amber-600 dark:text-amber-400 mb-2">98%</div>
               <div className="text-gray-600 dark:text-gray-400">Эффективность</div>
-            </div>
-            <div>
+            </AnimatedCard>
+            <AnimatedCard index={3}>
               <div className="text-4xl font-bold text-primary dark:text-blue-400 mb-2">24/7</div>
               <div className="text-gray-600 dark:text-gray-400">Поддержка</div>
-            </div>
+            </AnimatedCard>
           </div>
         </div>
       </section>
@@ -106,7 +106,7 @@ export default function Home() {
           </Lead>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <ContactModal
-              trigger={<Button className="btn-primary">Форма обратной связи</Button>}
+              trigger={<Button variant="default">Форма обратной связи</Button>}
             />
           </div>
         </div>

@@ -1,11 +1,13 @@
+'use client';
+
 import React from 'react';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 import { CheckCircle, Globe, Clock } from 'lucide-react';
+import { AnimatedCard } from '@/components/ui/AnimatedCard/AnimatedCard';
 
 const AboutPage = () => {
   return (
     <div className="space-y-16">
-      {/* Hero Section */}
       <section className="text-center section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
         <div className="max-w-4xl mx-auto px-4">
           <H1 className="mb-6">О компании Дезинфект</H1>
@@ -18,7 +20,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Миссия и ценности */}
       <section className="section-padding">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
@@ -31,7 +32,7 @@ const AboutPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="card text-center">
+            <AnimatedCard className="card text-center" index={0}>
               <div className="w-16 h-16 bg-primary-light dark:bg-primary-light/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <CheckCircle className="w-8 h-8 text-primary dark:text-primary-dark" />
               </div>
@@ -40,9 +41,9 @@ const AboutPage = () => {
                 Гарантируем высочайшее качество услуг с использованием
                 сертифицированных средств и проверенных методик.
               </P>
-            </div>
+            </AnimatedCard>
 
-            <div className="card text-center">
+            <AnimatedCard className="card text-center" index={1}>
               <div className="w-16 h-16 bg-secondary-light dark:bg-secondary-light/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Globe className="w-8 h-8 text-secondary dark:text-secondary-dark" />
               </div>
@@ -51,9 +52,9 @@ const AboutPage = () => {
                 Используем только безопасные для окружающей среды и здоровья
                 человека препараты.
               </P>
-            </div>
+            </AnimatedCard>
 
-            <div className="card text-center">
+            <AnimatedCard className="card text-center" index={2}>
               <div className="w-16 h-16 bg-accent-light dark:bg-accent-light/30 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Clock className="w-8 h-8 text-accent dark:text-accent-dark" />
               </div>
@@ -62,7 +63,7 @@ const AboutPage = () => {
                 Быстро реагируем на заявки и выполняем работы в кратчайшие сроки
                 с гарантией результата.
               </P>
-            </div>
+            </AnimatedCard>
           </div>
         </div>
       </section>
@@ -77,8 +78,8 @@ const AboutPage = () => {
             потребностей.
           </Lead>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="btn-primary">Обсудить проект</Button>
-            <Button variant="outline" className="btn-outline">
+            <Button variant="default">Обсудить проект</Button>
+            <Button variant="outline">
               Посмотреть услуги
             </Button>
           </div>

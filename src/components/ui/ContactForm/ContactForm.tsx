@@ -29,21 +29,18 @@ export function ContactForm({
     message: string;
   }>({ type: null, message: '' });
 
-  // Защита от спама
   const [honeypotValue, setHoneypotValue] = useState('');
   const [submitCount, setSubmitCount] = useState(0);
   const [lastSubmitTime, setLastSubmitTime] = useState(0);
   const [isRateLimited, setIsRateLimited] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Генерация токена для защиты
   const generateToken = () => {
     return Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
   };
 
   const [formToken] = useState(generateToken);
 
-  // Сброс rate limit через 60 секунд
   useEffect(() => {
     if (isRateLimited) {
       const timer = setTimeout(() => setIsRateLimited(false), 60000);
@@ -55,7 +52,6 @@ export function ContactForm({
     const now = Date.now();
     const timeSinceLastSubmit = now - lastSubmitTime;
     
-    // Не более 3 отправок за 5 минут
     if (submitCount >= 3 && timeSinceLastSubmit < 300000) {
       setIsRateLimited(true);
       setSubmitStatus({
@@ -65,7 +61,6 @@ export function ContactForm({
       return false;
     }
     
-    // Не чаще 1 раза в 30 секунд
     if (timeSinceLastSubmit < 30000 && submitCount > 0) {
       setSubmitStatus({
         type: 'error',
@@ -78,15 +73,12 @@ export function ContactForm({
   };
 
   const handleSubmit = async (prevState: FormState | null, formData: FormData): Promise<FormState> => {
-    // 1. Проверка rate limit
     if (!checkRateLimit()) {
       return { success: false, error: 'Rate limit exceeded' };
     }
 
-    // 2. Honeypot проверка (скрытое поле)
     const honeypot = formData.get('_website');
     if (honeypot && honeypot.toString().length > 0) {
-      // Бот попался — возвращаем успех, но не отправляем
       console.log('Honeypot triggered — bot detected');
       setSubmitStatus({
         type: 'success',
@@ -95,7 +87,6 @@ export function ContactForm({
       return { success: true, message: 'Bot detected and ignored' };
     }
 
-    // 3. Проверка токена
     const token = formData.get('_token');
     if (token !== formToken) {
       setSubmitStatus({
@@ -107,7 +98,6 @@ export function ContactForm({
 
     const data = Object.fromEntries(formData.entries());
     
-    // 4. Базовая валидация данных
     if (!data.firstName || (data.firstName as string).trim().length < 2) {
       setSubmitStatus({
         type: 'error',
@@ -124,12 +114,10 @@ export function ContactForm({
       return { success: false, error: 'Invalid phone' };
     }
 
-    // 5. Удаляем защитные поля перед отправкой
     delete data._website;
     delete data._token;
     delete data._timestamp;
 
-    // Обновляем счетчики
     setSubmitCount(prev => prev + 1);
     setLastSubmitTime(Date.now());
 
@@ -200,7 +188,6 @@ export function ContactForm({
       )}
 
       <form ref={formRef} action={formAction} className="space-y-4 md:space-y-6">
-        {/* Honeypot поле — скрыто от пользователей, но видно для ботов */}
         <div className="hidden">
           <label htmlFor="_website">Website</label>
           <input
@@ -214,7 +201,6 @@ export function ContactForm({
           />
         </div>
 
-        {/* Токен защиты */}
         <input type="hidden" name="_token" value={formToken} />
 
         <FormField label="Имя" name="firstName" required autoFocus />
@@ -245,7 +231,7 @@ export function ContactForm({
           placeholder="Опишите вашу проблему или задайте вопрос..."
         />
 
-        <Button type="submit" disabled={isPending || isRateLimited}>
+        <Button type="submit" variant="default" disabled={isPending || isRateLimited}>
           {isPending ? (
             <div className="flex items-center gap-2">
               <Loader2 className="animate-spin h-4 w-4" />
