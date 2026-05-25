@@ -10,7 +10,9 @@ import { FloatingContactButton } from '@/components/ui/FloatingContactButton/Flo
 
 const inter = Inter({ subsets: ['latin'] });
 
-const SITE_URL = 'https://estrukov.github.io/desinfect';
+const SITE_URL = process.env.VERCEL_URL 
+  ? `https://${process.env.VERCEL_URL}` 
+  : 'https://desinfect.vercel.app';
 const OG_IMAGE_URL = `${SITE_URL}/og-image.webp`;
 const FAVICON_URL = `${SITE_URL}/favicon.ico`;
 
