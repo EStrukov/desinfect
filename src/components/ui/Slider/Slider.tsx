@@ -68,13 +68,13 @@ export const Slider: React.FC<SliderProps> = ({
                 draggable={false}
               />
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent pointer-events-none" />
+              {/* <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent pointer-events-none" />
 
               <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 text-center">
                 <span className="inline-block text-white text-xs sm:text-sm font-medium tracking-wide px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-black/40 backdrop-blur-sm md:bg-black/30">
                   {slide.alt}
                 </span>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>
