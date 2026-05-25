@@ -13,55 +13,50 @@ const inter = Inter({ subsets: ['latin'] });
 const SITE_URL = process.env.VERCEL_URL 
   ? `https://${process.env.VERCEL_URL}` 
   : 'https://desinfect.vercel.app';
-const OG_IMAGE_URL = `${SITE_URL}/og-image.webp`;
+const OG_IMAGE_URL = `${SITE_URL}/og.png`;
 const FAVICON_URL = `${SITE_URL}/favicon.ico`;
 
 export const metadata: Metadata = {
   title: {
-    default:
-      'Дезинфект | Профессиональная дезинфекция, дезинсекция и дератизация',
+    default: 'Дезинфект | Профессиональная дезинфекция, дезинсекция и дератизация',
     template: '%s | Дезинфект',
   },
-  description:
-    'Избавим вас от мелких и больших неприятностей! Профессиональная обработка помещений от насекомых, грызунов и бактерий. Гарантия качества. Работаем по Минску и области.',
-  keywords:
-    'дезинфекция, дезинсекция, дератизация, уничтожение тараканов, уничтожение клопов, обработка от грызунов, Минск',
-  authors: [{ name: 'Дезинфект' }],
+  description: 'Избавим вас от мелких и больших неприятностей! Профессиональная обработка помещений от насекомых, грызунов и бактерий. Гарантия качества. Работаем по Минску и области.',
+  
   metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: '/',
-  },
+  
   openGraph: {
     title: 'Дезинфект | Профессиональная обработка помещений',
-    description:
-      'Избавим вас от мелких и больших неприятностей! Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
+    description: 'Избавим вас от мелких и больших неприятностей! Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
     url: SITE_URL,
     siteName: 'Дезинфект',
     images: [
       {
         url: OG_IMAGE_URL,
+        secureUrl: OG_IMAGE_URL,
         width: 1200,
         height: 630,
         alt: 'Дезинфект — профессиональная обработка',
+        type: 'image/jpeg',
       },
     ],
     locale: 'ru_RU',
     type: 'website',
   },
+  
   twitter: {
     card: 'summary_large_image',
     title: 'Дезинфект | Профессиональная обработка',
-    description:
-      'Избавим вас от мелких и больших неприятностей! Профессиональная дезинфекция, дезинсекция и дератизация.',
+    description: 'Избавим вас от мелких и больших неприятностей!',
     images: [OG_IMAGE_URL],
+    site: '@desinfect_by',
+    creator: '@desinfect_by',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
-  icons: {
-    icon: FAVICON_URL,
-    apple: `${SITE_URL}/apple-touch-icon.png`,
+  other: {
+    'telegram:title': 'Дезинфект | Профессиональная обработка',
+    'telegram:description': 'Избавим вас от мелких и больших неприятностей!',
+    'telegram:image': OG_IMAGE_URL,
+    'telegram:card': 'summary_large_image',
   },
   verification: {
     google: 'your-google-verification-code',
