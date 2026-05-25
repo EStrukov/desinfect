@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ['latin'] });
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL 
   || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://desinfect.vercel.app');
 
-const OG_IMAGE_URL = `${SITE_URL}/og.png`;
+const OG_IMAGE_URL = `${SITE_URL}/og1.png`;
 const FAVICON_URL = `${SITE_URL}/favicon.ico`;
 
 export const metadata: Metadata = {
@@ -255,10 +255,7 @@ export default function RootLayout({
         {/* Canonical URL */}
         <link rel="canonical" href={SITE_URL} />
         
-        {/* Альтернативные языки */}
         <link rel="alternate" hrefLang="ru" href={SITE_URL} />
-        <link rel="alternate" hrefLang="be" href={`${SITE_URL}/be`} />
-        <link rel="alternate" hrefLang="en" href={`${SITE_URL}/en`} />
         <link rel="alternate" hrefLang="x-default" href={SITE_URL} />
         
         {/* DNS Prefetch */}
