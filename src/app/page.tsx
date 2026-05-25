@@ -5,12 +5,20 @@ import { Button } from '@/components/ui/Button/Button';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 import { CheckCircle, Zap, Heart } from 'lucide-react';
 import { AnimatedCard } from '@/components/ui/AnimatedCard/AnimatedCard';
+import { Slider } from '@/components/ui/Slider/Slider';
+
+const slides = [
+  { src: '/assets/slides/desinfection.webp', alt: 'Дезинфекция помещений' },
+  { src: '/assets/slides/desinsect.webp', alt: 'Дезинсекция — борьба с насекомыми' },
+  { src: '/assets/slides/deratization.webp', alt: 'Дератизация — уничтожение грызунов' },
+];
 
 export default function Home() {
   return (
     <div className="space-y-16">
-      {/* Hero Section */}
-      <section className="text-center section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
+      <Slider slides={slides} autoplayInterval={4000} />
+
+      <section className="text-center section-padding rounded-2xl shadow-sm bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
         <div className="max-w-4xl mx-auto px-4">
           <H1 className="mb-6">
             Профессиональная дезинфекция
@@ -37,7 +45,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Преимущества */}
       <section className="py-16">
         <div className="text-center mb-12">
           <H2 className="mb-4">Почему выбирают нас</H2>
@@ -73,7 +80,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Статистика */}
       <section className="py-16 bg-gray-50 dark:bg-gray-800/50 border-y border-gray-100 dark:border-gray-700">
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -97,8 +103,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
+      <section className="section-padding rounded-2xl shadow-sm bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
         <div className="text-center max-w-3xl mx-auto px-4">
           <H2 className="mb-4">Готовы избавиться от проблемы?</H2>
           <Lead className="mb-8">

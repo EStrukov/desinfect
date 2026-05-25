@@ -8,7 +8,7 @@ import { AnimatedCard } from '@/components/ui/AnimatedCard/AnimatedCard';
 const AboutPage = () => {
   return (
     <div className="space-y-16">
-      <section className="text-center section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
+      <section className="text-center section-padding rounded-2xl shadow-sm bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
         <div className="max-w-4xl mx-auto px-4">
           <H1 className="mb-6">О компании Дезинфект</H1>
           <Lead className="mb-8 max-w-3xl mx-auto">

@@ -10,28 +10,36 @@ import { FloatingContactButton } from '@/components/ui/FloatingContactButton/Flo
 
 const inter = Inter({ subsets: ['latin'] });
 
+const SITE_URL = 'https://estrukov.github.io/desinfect';
+const OG_IMAGE_URL = `${SITE_URL}/og-image.webp`;
+const FAVICON_URL = `${SITE_URL}/favicon.ico`;
+
 export const metadata: Metadata = {
   title: {
-    default: 'Дезинфект | Профессиональная дезинфекция, дезинсекция и дератизация',
+    default:
+      'Дезинфект | Профессиональная дезинфекция, дезинсекция и дератизация',
     template: '%s | Дезинфект',
   },
-  description: 'Избавим вас от мелких и больших неприятностей! Профессиональная обработка помещений от насекомых, грызунов и бактерий. Гарантия качества. Работаем по Минску и области.',
-  keywords: 'дезинфекция, дезинсекция, дератизация, уничтожение тараканов, уничтожение клопов, обработка от грызунов, Минск',
+  description:
+    'Избавим вас от мелких и больших неприятностей! Профессиональная обработка помещений от насекомых, грызунов и бактерий. Гарантия качества. Работаем по Минску и области.',
+  keywords:
+    'дезинфекция, дезинсекция, дератизация, уничтожение тараканов, уничтожение клопов, обработка от грызунов, Минск',
   authors: [{ name: 'Дезинфект' }],
-  metadataBase: new URL('https://estrukov.github.io/desinfect'),
+  metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     title: 'Дезинфект | Профессиональная обработка помещений',
-    description: 'Избавим вас от мелких и больших неприятностей!',
-    url: 'https://estrukov.github.io/desinfect',
+    description:
+      'Избавим вас от мелких и больших неприятностей! Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
+    url: SITE_URL,
     siteName: 'Дезинфект',
     images: [
       {
-        url: '/og.png',
-        width: 1734,
-        height: 907,
+        url: OG_IMAGE_URL,
+        width: 1200,
+        height: 630,
         alt: 'Дезинфект — профессиональная обработка',
       },
     ],
@@ -41,16 +49,17 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Дезинфект | Профессиональная обработка',
-    description: 'Избавим вас от мелких и больших неприятностей!',
-    images: ['/og.png'],
+    description:
+      'Избавим вас от мелких и больших неприятностей! Профессиональная дезинфекция, дезинсекция и дератизация.',
+    images: [OG_IMAGE_URL],
   },
   robots: {
     index: true,
     follow: true,
   },
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    icon: FAVICON_URL,
+    apple: `${SITE_URL}/apple-touch-icon.png`,
   },
   verification: {
     google: 'your-google-verification-code',
@@ -65,22 +74,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" className="h-full" suppressHydrationWarning>
-      <body className={`${inter.className} bg-gray-50 dark:bg-gray-900 overflow-y-auto`}>
+      <body
+        className={`${inter.className} bg-gray-50 dark:bg-gray-900 overflow-y-auto`}
+      >
         <Providers>
-          {/* Header - фиксированный */}
           <Header />
 
-          {/* Sidebar - фиксированный */}
           <div className="hidden md:block">
             <Sidebar />
           </div>
 
-          {/* Основной контент */}
           <div className="md:ml-16 pt-16">
             <div className="max-w-7xl mx-auto p-4 lg:p-6">{children}</div>
           </div>
 
-          {/* Footer - после контента */}
           <div className="md:ml-16">
             <Footer />
           </div>

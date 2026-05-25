@@ -7,8 +7,7 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 export default function Contact() {
   return (
     <div className="space-y-16">
-      {/* Hero Section */}
-      <section className="text-center section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
+      <section className="text-center section-padding rounded-2xl shadow-sm bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
         <div className="max-w-4xl mx-auto px-4">
           <H1 className="mb-6">Контакты</H1>
           <P className="mb-8 max-w-3xl mx-auto text-lg">
@@ -18,7 +17,6 @@ export default function Contact() {
       </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Контактная информация */}
         <div className="space-y-8">
           <div>
             <H2 className="mb-6">Как нас найти</H2>
@@ -80,7 +78,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Социальные сети */}
           <div>
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
               Мы в соцсетях
@@ -93,7 +90,6 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Форма обратной связи */}
         <ContactForm />
       </div>
     </div>

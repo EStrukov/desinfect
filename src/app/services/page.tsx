@@ -9,7 +9,7 @@ import { services } from '@/lib/servicesConfig';
 export default function Services() {
   return (
     <div className="space-y-16">
-      <section className="text-center section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
+      <section className="text-center section-padding rounded-2xl shadow-sm bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
         <div className="max-w-4xl mx-auto px-4">
           <H1 className="mb-6">Наши услуги</H1>
           <Lead className="mb-8 max-w-3xl mx-auto">
@@ -29,7 +29,7 @@ export default function Services() {
         </div>
       </section>
 
-      <section className="section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
+      <section className="section-padding rounded-2xl shadow-sm bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
         <div className="text-center max-w-3xl mx-auto px-4">
           <H2 className="mb-4">Нужна консультация?</H2>
           <Lead className="mb-8">
