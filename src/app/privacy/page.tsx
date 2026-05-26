@@ -1,41 +1,8 @@
-import type { Metadata } from 'next';
 import { H1, H2, P } from '@/components/ui/Typography/Typography';
+import { createPageMetadata, getSiteUrl } from '@/lib/og';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'https://desinfect.vercel.app');
-
-export const metadata: Metadata = {
-  title: 'Политика конфиденциальности',
-  description:
-    'Политика обработки персональных данных компании Дезинфект. Узнайте, какие данные мы собираем и как их используем.',
-  openGraph: {
-    title: 'Политика конфиденциальности | Дезинфект',
-    description: 'Политика обработки персональных данных компании Дезинфект.',
-    url: `${SITE_URL}/privacy`,
-    siteName: 'Дезинфект',
-    images: [
-      {
-        url: `${SITE_URL}/og`,
-        secureUrl: `${SITE_URL}/og`,
-        width: 1200,
-        height: 630,
-        alt: 'Политика конфиденциальности Дезинфект',
-        type: 'image/png',
-      },
-    ],
-    locale: 'ru_RU',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Политика конфиденциальности | Дезинфект',
-    description: 'Политика обработки персональных данных компании Дезинфект.',
-    images: [`${SITE_URL}/og`],
-  },
-};
+const SITE_URL = getSiteUrl();
+export const metadata = createPageMetadata('privacy', `${SITE_URL}/privacy`);
 
 export default function PrivacyPage() {
   return (

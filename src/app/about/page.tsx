@@ -1,45 +1,10 @@
-import type { Metadata } from 'next';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 import { CheckCircle, Globe, Clock } from 'lucide-react';
 import { AnimatedCard } from '@/components/ui/AnimatedCard/AnimatedCard';
+import { createPageMetadata, getSiteUrl } from '@/lib/og';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'https://desinfect.vercel.app');
-
-export const metadata: Metadata = {
-  title: 'О компании',
-  description:
-    'Более 10 лет профессиональной дезинфекции, дезинсекции и дератизации в Минске и области. Современные технологии, экологичные средства, гарантия качества.',
-  openGraph: {
-    title: 'О компании | Дезинфект',
-    description:
-      'Более 10 лет профессиональной дезинфекции, дезинсекции и дератизации в Минске и области.',
-    url: `${SITE_URL}/about`,
-    siteName: 'Дезинфект',
-    images: [
-      {
-        url: `${SITE_URL}/og`,
-        secureUrl: `${SITE_URL}/og`,
-        width: 1200,
-        height: 630,
-        alt: 'О компании Дезинфект',
-        type: 'image/png',
-      },
-    ],
-    locale: 'ru_RU',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'О компании | Дезинфект',
-    description:
-      'Более 10 лет профессиональной дезинфекции, дезинсекции и дератизации.',
-    images: [`${SITE_URL}/og`],
-  },
-};
+const SITE_URL = getSiteUrl();
+export const metadata = createPageMetadata('about', `${SITE_URL}/about`);
 
 export default function AboutPage() {
   return (

@@ -1,49 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
-import type { Metadata } from 'next';
 import { H1, H2, Lead } from '@/components/ui/Typography/Typography';
 import { Button } from '@/components/ui/Button/Button';
 import { ContactModal } from '@/components/ui/ContactModal/ContactModal';
 import { ServiceCard } from '@/components/ui/ServiceCard/ServiceCard';
 import { services } from '@/lib/servicesConfig';
+import { createPageMetadata, getSiteUrl } from '@/lib/og';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'https://desinfect.vercel.app');
-
-export const metadata: Metadata = {
-  title: 'Услуги',
-  description:
-    'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области. Обработка от насекомых, грызунов, плесени и бактерий. Гарантия качества.',
-  openGraph: {
-    title: 'Услуги по дезинфекции | Дезинфект',
-    description:
-      'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области. Обработка от насекомых, грызунов, плесени и бактерий.',
-    url: `${SITE_URL}/services`,
-    siteName: 'Дезинфект',
-    images: [
-      {
-        url: `${SITE_URL}/og`,
-        secureUrl: `${SITE_URL}/og`,
-        width: 1200,
-        height: 630,
-        alt: 'Услуги Дезинфект — профессиональная обработка',
-        type: 'image/png',
-      },
-    ],
-    locale: 'ru_RU',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Услуги по дезинфекции | Дезинфект',
-    description:
-      'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
-    images: [`${SITE_URL}/og`],
-  },
-};
+const SITE_URL = getSiteUrl();
+export const metadata = createPageMetadata('services', `${SITE_URL}/services`);
 
 export default function Services() {
   return (

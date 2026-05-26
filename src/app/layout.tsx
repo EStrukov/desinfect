@@ -7,64 +7,19 @@ import { Footer } from '@/components/layout/Footer/Footer';
 import { Header } from '@/components/layout/Header/Header';
 import { CookieConsent } from '@/components/ui/CookieConsent/CookieConsent';
 import { FloatingContactButton } from '@/components/ui/FloatingContactButton/FloatingContactButton';
+import { getSiteUrl, createPageMetadata, ogPageConfig } from '@/lib/og';
 
 const inter = Inter({ subsets: ['latin'] });
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'https://desinfect.vercel.app');
-
-const OG_DYNAMIC_URL = `${SITE_URL}/og`;
-const FAVICON_URL = `${SITE_URL}/favicon.ico`;
+const SITE_URL = getSiteUrl();
 
 export const metadata: Metadata = {
+  ...createPageMetadata('root', SITE_URL),
   title: {
-    default:
-      'Дезинфект | Профессиональная дезинфекция, дезинсекция и дератизация',
+    default: ogPageConfig.root.title,
     template: '%s | Дезинфект',
   },
-  description:
-    'Избавим вас от мелких и больших неприятностей! Профессиональная обработка помещений от насекомых, грызунов и бактерий. Гарантия качества. Работаем по Минску и области.',
-
   metadataBase: new URL(SITE_URL),
-
-  // Open Graph (Facebook, LinkedIn, Viber, WhatsApp, Telegram, Slack, Discord)
-  openGraph: {
-    title: 'Дезинфект | Профессиональная обработка помещений',
-    description:
-      'Избавим вас от мелких и больших неприятностей! Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
-    url: SITE_URL,
-    siteName: 'Дезинфект',
-    images: [
-      {
-        url: OG_DYNAMIC_URL,
-        secureUrl: OG_DYNAMIC_URL,
-        width: 1200,
-        height: 630,
-        alt: 'Дезинфект — профессиональная обработка',
-        type: 'image/png',
-      },
-    ],
-    locale: 'ru_RU',
-    type: 'website',
-    // Дополнительные поля для Facebook
-    determiner: 'auto',
-    emails: ['info@desinfect.by'],
-    phoneNumbers: ['+375291234567'],
-    countryName: 'Belarus',
-  },
-
-  // Twitter/X
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Дезинфект | Профессиональная обработка',
-    description: 'Избавим вас от мелких и больших неприятностей!',
-    images: [OG_DYNAMIC_URL],
-    site: '@desinfect_by',
-    creator: '@desinfect_by',
-  },
 
   // Robots
   robots: {
@@ -81,11 +36,7 @@ export const metadata: Metadata = {
 
   // Иконки
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      // { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      // { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
-    ],
+    icon: [{ url: '/favicon.ico', sizes: 'any' }],
     apple: [
       { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
     ],
@@ -112,7 +63,7 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code',
     yandex: 'your-yandex-verification-code',
-    me: ['@desinfect_by'], // для Mastodon
+    me: ['@desinfect_by'],
   },
 
   // Другие метатеги
@@ -121,16 +72,14 @@ export const metadata: Metadata = {
   creator: 'Дезинфект',
   publisher: 'Дезинфект',
 
-  // Альтернативные языки (опционально)
+  // Альтернативные языки
   alternates: {
     canonical: '/',
     languages: {
       ru: '/',
-      // 'be': '/be',
-      // 'en': '/en',
     },
   },
-};
+} as Metadata;
 
 export default function RootLayout({
   children,
@@ -140,24 +89,28 @@ export default function RootLayout({
   return (
     <html lang="ru" className="h-full" suppressHydrationWarning>
       <head>
-        {/* DNS Prefetch */}
         <link rel="dns-prefetch" href="//api.telegram.org" />
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <meta
+          name="google-site-verification"
+          content="your-google-verification-code"
+        />
+        <meta
+          name="yandex-verification"
+          content="your-yandex-verification-code"
+        />
       </head>
       <body
         className={`${inter.className} bg-gray-50 dark:bg-gray-900 overflow-y-auto`}
       >
         <Providers>
           <Header />
-
           <div className="hidden md:block">
             <Sidebar />
           </div>
-
           <div className="md:ml-16 pt-16">
             <div className="max-w-7xl mx-auto p-4 lg:p-6">{children}</div>
           </div>
-
           <div className="md:ml-16">
             <Footer />
           </div>

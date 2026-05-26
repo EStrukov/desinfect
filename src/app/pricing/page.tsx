@@ -1,45 +1,12 @@
 import React from 'react';
-import type { Metadata } from 'next';
 import { H1, H2, P, Lead } from '@/components/ui/Typography/Typography';
 import { extraServices, pricingCards } from '@/lib/priceConfig';
 import { ExtraServiceCard } from '@/components/ui/ExtraServiceCard/ExtraServiceCard';
 import { PricingCard } from '@/components/ui/PricingCard/PricingCard';
+import { createPageMetadata, getSiteUrl } from '@/lib/og';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'https://desinfect.vercel.app');
-
-export const metadata: Metadata = {
-  title: 'Цены',
-  description:
-    'Стоимость услуг дезинфекции, дезинсекции и дератизации. Прозрачное ценообразование без скрытых платежей. Работаем по Минску и области.',
-  openGraph: {
-    title: 'Цены на дезинфекцию | Дезинфект',
-    description:
-      'Стоимость услуг дезинфекции, дезинсекции и дератизации. Прозрачное ценообразование без скрытых платежей.',
-    url: `${SITE_URL}/pricing`,
-    siteName: 'Дезинфект',
-    images: [
-      {
-        url: `${SITE_URL}/og`,
-        secureUrl: `${SITE_URL}/og`,
-        width: 1200,
-        height: 630,
-        alt: 'Цены на услуги Дезинфект',
-        type: 'image/png',
-      },
-    ],
-    locale: 'ru_RU',
-    type: 'website',
-  },
-  twitter: {
-    title: 'Цены на дезинфекцию | Дезинфект',
-    description: 'Стоимость услуг дезинфекции, дезинсекции и дератизации.',
-    images: [`${SITE_URL}/og`],
-  },
-};
+const SITE_URL = getSiteUrl();
+export const metadata = createPageMetadata('pricing', `${SITE_URL}/pricing`);
 
 export default function Pricing() {
   return (

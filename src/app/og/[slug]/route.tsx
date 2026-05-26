@@ -12,8 +12,12 @@ const SITE_URL =
 
 const PHONE = '+375 33 123-45-67';
 
-export async function GET() {
-  const config = ogPageConfig.root;
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ slug: string }> },
+) {
+  const { slug } = await params;
+  const config = ogPageConfig[slug] || ogPageConfig.notfound;
 
   return new ImageResponse(
     renderOGImage({ config, siteUrl: SITE_URL, phone: PHONE }),

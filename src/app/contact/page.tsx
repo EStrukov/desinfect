@@ -1,47 +1,12 @@
-import type { Metadata } from 'next';
 import { contactInfo } from '@/lib/contacts';
 import { ContactForm } from '@/components/ui/ContactForm/ContactForm';
 import { SocialIcon } from '@/components/ui/SocialIcon/SocialIcon';
 import { H1, H2, P } from '@/components/ui/Typography/Typography';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { createPageMetadata, getSiteUrl } from '@/lib/og';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'https://desinfect.vercel.app');
-
-export const metadata: Metadata = {
-  title: 'Контакты',
-  description:
-    'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации. Работаем по Минску и области. Звоните!',
-  openGraph: {
-    title: 'Контакты | Дезинфект',
-    description:
-      'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации. Работаем по Минску и области.',
-    url: `${SITE_URL}/contact`,
-    siteName: 'Дезинфект',
-    images: [
-      {
-        url: `${SITE_URL}/og`,
-        secureUrl: `${SITE_URL}/og`,
-        width: 1200,
-        height: 630,
-        alt: 'Контакты Дезинфект',
-        type: 'image/png',
-      },
-    ],
-    locale: 'ru_RU',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Контакты | Дезинфект',
-    description:
-      'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации.',
-    images: [`${SITE_URL}/og`],
-  },
-};
+const SITE_URL = getSiteUrl();
+export const metadata = createPageMetadata('contact', `${SITE_URL}/contact`);
 
 export default function Contact() {
   return (
@@ -136,7 +101,6 @@ export default function Contact() {
               Мы в соцсетях
             </h3>
             <div className="flex space-x-4">
-              {/* <SocialIcon type="vk" size="md" /> */}
               <SocialIcon type="telegram" size="md" />
               <SocialIcon type="instagram" size="md" />
             </div>
