@@ -5,10 +5,6 @@ interface OGImageProps {
   phone: string;
 }
 
-/**
- * SVG-логотип: иконка щита + текст "ДЕЗИНФЕКТ"
- * Сделан inline, чтобы гарантированно работать в Satori (next/og).
- */
 function Logo() {
   return (
     <div
@@ -19,7 +15,6 @@ function Logo() {
         marginBottom: '28px',
       }}
     >
-      {/* Иконка щит */}
       <svg
         width="44"
         height="44"
@@ -32,7 +27,6 @@ function Logo() {
       >
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       </svg>
-      {/* Текст логотипа */}
       <span
         style={{
           fontSize: '22px',
@@ -70,7 +64,6 @@ export function renderOGImage({
         padding: '60px 80px',
       }}
     >
-      {/* Декоративные элементы */}
       <div
         style={{
           position: 'absolute',
@@ -97,7 +90,6 @@ export function renderOGImage({
       {/* Логотип (inline SVG) */}
       <Logo />
 
-      {/* Разделитель */}
       <div
         style={{
           width: '80px',
@@ -108,7 +100,6 @@ export function renderOGImage({
         }}
       />
 
-      {/* Заголовок страницы */}
       <h1
         style={{
           fontSize: '46px',
@@ -124,7 +115,6 @@ export function renderOGImage({
         {title}
       </h1>
 
-      {/* Описание */}
       <p
         style={{
           fontSize: '22px',
@@ -139,7 +129,6 @@ export function renderOGImage({
         {description}
       </p>
 
-      {/* Подзаголовок */}
       <span
         style={{
           fontSize: '16px',
@@ -153,7 +142,6 @@ export function renderOGImage({
         {subtitle}
       </span>
 
-      {/* CTA — телефон */}
       <div
         style={{
           display: 'flex',
@@ -189,7 +177,6 @@ export function renderOGImage({
         </span>
       </div>
 
-      {/* Нижняя плашка с URL */}
       <div
         style={{
           position: 'absolute',

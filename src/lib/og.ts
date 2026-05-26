@@ -3,9 +3,6 @@ import { ogPageConfig, type OGPageConfig } from './ogConfig';
 export type { OGPageConfig } from './ogConfig';
 export { ogPageConfig } from './ogConfig';
 
-/**
- * Возвращает SITE_URL из переменных окружения.
- */
 export function getSiteUrl(): string {
   return (
     process.env.NEXT_PUBLIC_SITE_URL ||
@@ -66,7 +63,7 @@ export function createPageMetadata(
           secureUrl: ogUrl,
           width: 1200,
           height: 630,
-          alt: `${config.subtitle} — Дезинфект`,
+          alt: `${config.subtitle} | Узнайте подробности на сайте Дезинфект`,
           type: 'image/png',
         },
       ],
