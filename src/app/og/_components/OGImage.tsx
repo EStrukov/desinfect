@@ -1,14 +1,19 @@
-import type { OGPageConfig } from '@/lib/ogConfig';
-
 interface OGImageProps {
-  config: OGPageConfig;
-  siteUrl: string;
+  title: string;
+  description: string;
+  subtitle: string;
   phone: string;
+  logoBase64: string | null;
 }
 
-export function renderOGImage({ config, siteUrl, phone }: OGImageProps) {
-  const { title, description, subtitle, logo } = config;
-  const logoSrc = `${siteUrl}${logo}`;
+export function renderOGImage({
+  title,
+  description,
+  subtitle,
+  phone,
+  logoBase64,
+}: OGImageProps) {
+  const logoSrc = logoBase64 ? `data:image/webp;base64,${logoBase64}` : null;
 
   return (
     <div
@@ -51,19 +56,19 @@ export function renderOGImage({ config, siteUrl, phone }: OGImageProps) {
         }}
       />
 
-      {/* Логотип */}
-      <img
-        src={logoSrc}
-        alt="Дезинфект"
-        width="320"
-        height="64"
-        style={{
-          objectFit: 'contain',
-          marginBottom: '32px',
-        }}
-      />
+      {logoSrc ? (
+        <img
+          src={logoSrc}
+          alt="Дезинфект"
+          width="280"
+          height="56"
+          style={{
+            objectFit: 'contain',
+            marginBottom: '32px',
+          }}
+        />
+      ) : null}
 
-      {/* Разделитель */}
       <div
         style={{
           width: '80px',
@@ -74,7 +79,6 @@ export function renderOGImage({ config, siteUrl, phone }: OGImageProps) {
         }}
       />
 
-      {/* Заголовок страницы */}
       <h1
         style={{
           fontSize: '46px',
@@ -90,7 +94,6 @@ export function renderOGImage({ config, siteUrl, phone }: OGImageProps) {
         {title}
       </h1>
 
-      {/* Описание */}
       <p
         style={{
           fontSize: '22px',
@@ -105,7 +108,6 @@ export function renderOGImage({ config, siteUrl, phone }: OGImageProps) {
         {description}
       </p>
 
-      {/* Подзаголовок */}
       <span
         style={{
           fontSize: '16px',
@@ -119,7 +121,6 @@ export function renderOGImage({ config, siteUrl, phone }: OGImageProps) {
         {subtitle}
       </span>
 
-      {/* CTA — телефон */}
       <div
         style={{
           display: 'flex',
@@ -131,7 +132,6 @@ export function renderOGImage({ config, siteUrl, phone }: OGImageProps) {
           background: 'rgba(22, 163, 74, 0.15)',
         }}
       >
-        {/* Phone icon */}
         <svg
           width="22"
           height="22"
@@ -156,7 +156,6 @@ export function renderOGImage({ config, siteUrl, phone }: OGImageProps) {
         </span>
       </div>
 
-      {/* Нижняя плашка с URL */}
       <div
         style={{
           position: 'absolute',
