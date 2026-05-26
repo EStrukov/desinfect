@@ -3,7 +3,48 @@ interface OGImageProps {
   description: string;
   subtitle: string;
   phone: string;
-  logoBase64: string | null;
+}
+
+/**
+ * SVG-логотип: иконка щита + текст "ДЕЗИНФЕКТ"
+ * Сделан inline, чтобы гарантированно работать в Satori (next/og).
+ */
+function Logo() {
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '14px',
+        marginBottom: '28px',
+      }}
+    >
+      {/* Иконка щит */}
+      <svg
+        width="44"
+        height="44"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#3b82f6"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+      {/* Текст логотипа */}
+      <span
+        style={{
+          fontSize: '22px',
+          fontWeight: 800,
+          color: '#ffffff',
+          letterSpacing: '0.25em',
+        }}
+      >
+        ДЕЗИНФЕКТ
+      </span>
+    </div>
+  );
 }
 
 export function renderOGImage({
@@ -11,10 +52,7 @@ export function renderOGImage({
   description,
   subtitle,
   phone,
-  logoBase64,
 }: OGImageProps) {
-  const logoSrc = logoBase64 ? `data:image/webp;base64,${logoBase64}` : null;
-
   return (
     <div
       style={{
@@ -56,19 +94,10 @@ export function renderOGImage({
         }}
       />
 
-      {logoSrc ? (
-        <img
-          src={logoSrc}
-          alt="Дезинфект"
-          width="280"
-          height="56"
-          style={{
-            objectFit: 'contain',
-            marginBottom: '32px',
-          }}
-        />
-      ) : null}
+      {/* Логотип (inline SVG) */}
+      <Logo />
 
+      {/* Разделитель */}
       <div
         style={{
           width: '80px',
@@ -79,6 +108,7 @@ export function renderOGImage({
         }}
       />
 
+      {/* Заголовок страницы */}
       <h1
         style={{
           fontSize: '46px',
@@ -94,6 +124,7 @@ export function renderOGImage({
         {title}
       </h1>
 
+      {/* Описание */}
       <p
         style={{
           fontSize: '22px',
@@ -108,6 +139,7 @@ export function renderOGImage({
         {description}
       </p>
 
+      {/* Подзаголовок */}
       <span
         style={{
           fontSize: '16px',
@@ -121,6 +153,7 @@ export function renderOGImage({
         {subtitle}
       </span>
 
+      {/* CTA — телефон */}
       <div
         style={{
           display: 'flex',
@@ -156,6 +189,7 @@ export function renderOGImage({
         </span>
       </div>
 
+      {/* Нижняя плашка с URL */}
       <div
         style={{
           position: 'absolute',
