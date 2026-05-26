@@ -1,11 +1,43 @@
-// app/privacy/page.tsx
+import type { Metadata } from 'next';
 import { H1, H2, P } from '@/components/ui/Typography/Typography';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL 
+  || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://desinfect.vercel.app');
+
+export const metadata: Metadata = {
+  title: 'Политика конфиденциальности',
+  description: 'Политика обработки персональных данных компании Дезинфект. Узнайте, какие данные мы собираем и как их используем.',
+  openGraph: {
+    title: 'Политика конфиденциальности | Дезинфект',
+    description: 'Политика обработки персональных данных компании Дезинфект.',
+    url: `${SITE_URL}/privacy`,
+    siteName: 'Дезинфект',
+    images: [
+      {
+        url: `${SITE_URL}/og1.png`,
+        secureUrl: `${SITE_URL}/og1.png`,
+        width: 1200,
+        height: 630,
+        alt: 'Политика конфиденциальности Дезинфект',
+        type: 'image/png',
+      },
+    ],
+    locale: 'ru_RU',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Политика конфиденциальности | Дезинфект',
+    description: 'Политика обработки персональных данных компании Дезинфект.',
+    images: [`${SITE_URL}/og1.png`],
+  },
+};
 
 export default function PrivacyPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
       <H1>Политика обработки персональных данных</H1>
-      
+     
       <H2 className="mt-8 mb-4">1. Общие положения</H2>
       <P>
         Настоящая политика обработки персональных данных составлена в соответствии 

@@ -4,6 +4,8 @@ import { Logo } from '@/components/ui/Logo/Logo';
 import { SocialIcon } from '@/components/ui/SocialIcon/SocialIcon';
 import { contactInfo } from '@/lib/contacts';
 
+const CURRENT_YEAR = new Date().getFullYear();
+
 export function Footer() {
   return (
     <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 transition-colors">
@@ -73,22 +75,21 @@ export function Footer() {
               <ul className="space-y-3 text-sm">
                 <li className="flex items-center text-gray-600 dark:text-gray-400">
                   <Phone className="w-4 h-4 mr-2 text-green-600 dark:text-green-400" />
-                              <a
-              href={`tel:${contactInfo.phone}`}
-              className="md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
-            >
-              {contactInfo.phone}
-            </a>
-
+                  <a
+                    href={`tel:${contactInfo.phone}`}
+                    className="md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
+                  >
+                    {contactInfo.phone}
+                  </a>
                 </li>
                 <li className="flex items-center text-gray-600 dark:text-gray-400">
                   <Mail className="w-4 h-4 mr-2 text-blue-600 dark:text-blue-400" />
                   <a
-                href={`mailto:${contactInfo.email}`}
-              className="md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
-              >
-                {contactInfo.email}
-              </a>
+                    href={`mailto:${contactInfo.email}`}
+                    className="md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
+                  >
+                    {contactInfo.email}
+                  </a>
                 </li>
                 <li className="flex items-center text-gray-600 dark:text-gray-400">
                   <Clock className="w-4 h-4 mr-2 text-amber-600 dark:text-amber-400" />
@@ -102,7 +103,7 @@ export function Footer() {
           <div className="pt-8 border-t border-gray-200 dark:border-gray-700">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-sm text-gray-500">
-                © {new Date().getFullYear()} Дезинфект. Все права защищены.
+                © {CURRENT_YEAR} Дезинфект. Все права защищены.
               </p>
               <div className="flex flex-col sm:flex-row gap-6 text-sm text-gray-500 items-center">
                 <Link

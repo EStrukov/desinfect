@@ -1,11 +1,47 @@
-'use client';
-
-import React from 'react';
+import type { Metadata } from 'next';
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 import { CheckCircle, Globe, Clock } from 'lucide-react';
 import { AnimatedCard } from '@/components/ui/AnimatedCard/AnimatedCard';
 
-const AboutPage = () => {
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://desinfect.vercel.app');
+
+export const metadata: Metadata = {
+  title: 'О компании',
+  description:
+    'Более 10 лет профессиональной дезинфекции, дезинсекции и дератизации в Минске и области. Современные технологии, экологичные средства, гарантия качества.',
+  openGraph: {
+    title: 'О компании | Дезинфект',
+    description:
+      'Более 10 лет профессиональной дезинфекции, дезинсекции и дератизации в Минске и области.',
+    url: `${SITE_URL}/about`,
+    siteName: 'Дезинфект',
+    images: [
+      {
+        url: `${SITE_URL}/og1.png`,
+        secureUrl: `${SITE_URL}/og1.png`,
+        width: 1200,
+        height: 630,
+        alt: 'О компании Дезинфект',
+        type: 'image/png',
+      },
+    ],
+    locale: 'ru_RU',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'О компании | Дезинфект',
+    description:
+      'Более 10 лет профессиональной дезинфекции, дезинсекции и дератизации.',
+    images: [`${SITE_URL}/og1.png`],
+  },
+};
+
+export default function AboutPage() {
   return (
     <div className="space-y-16">
       <section className="text-center section-padding rounded-2xl shadow-sm bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
@@ -67,26 +103,6 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
-
-
-      {/* CTA Section */}
-      {/* <section className="section-padding bg-gradient-to-br from-primary-light to-secondary-light dark:from-primary-light/20 dark:to-secondary-light/20">
-        <div className="text-center max-w-3xl mx-auto px-4">
-          <H2 className="mb-4">Готовы к сотрудничеству?</H2>
-          <Lead className="mb-8">
-            Свяжитесь с нами для получения консультации и обсуждения ваших
-            потребностей.
-          </Lead>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="default">Обсудить проект</Button>
-            <Button variant="outline">
-              Посмотреть услуги
-            </Button>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
-};
-
-export default AboutPage;
+}
