@@ -5,21 +5,26 @@ import { SocialIcon } from '@/components/ui/SocialIcon/SocialIcon';
 import { H1, H2, P } from '@/components/ui/Typography/Typography';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL 
-  || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://desinfect.vercel.app');
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://desinfect.vercel.app');
 
 export const metadata: Metadata = {
   title: 'Контакты',
-  description: 'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации. Работаем по Минску и области. Звоните!',
+  description:
+    'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации. Работаем по Минску и области. Звоните!',
   openGraph: {
     title: 'Контакты | Дезинфект',
-    description: 'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации. Работаем по Минску и области.',
+    description:
+      'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации. Работаем по Минску и области.',
     url: `${SITE_URL}/contact`,
     siteName: 'Дезинфект',
     images: [
       {
-        url: `${SITE_URL}/og1.png`,
-        secureUrl: `${SITE_URL}/og1.png`,
+        url: `${SITE_URL}/og`,
+        secureUrl: `${SITE_URL}/og`,
         width: 1200,
         height: 630,
         alt: 'Контакты Дезинфект',
@@ -32,8 +37,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Контакты | Дезинфект',
-    description: 'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации.',
-    images: [`${SITE_URL}/og1.png`],
+    description:
+      'Свяжитесь с нами для заказа услуг дезинфекции, дезинсекции и дератизации.',
+    images: [`${SITE_URL}/og`],
   },
 };
 
@@ -60,8 +66,12 @@ export default function Contact() {
                   <MapPin className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">Адрес</h3>
-                  <p className="text-gray-600 dark:text-gray-400">{contactInfo.address.city}</p>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    Адрес
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {contactInfo.address.city}
+                  </p>
                 </div>
               </div>
 
@@ -70,8 +80,12 @@ export default function Contact() {
                   <Phone className="w-6 h-6 text-green-600 dark:text-green-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">Телефон</h3>
-                  <p className="text-gray-600 dark:text-gray-400">{contactInfo.phone}</p>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    Телефон
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {contactInfo.phone}
+                  </p>
                   <p className="text-sm text-gray-500 dark:text-gray-500">
                     {contactInfo.workHours.emergency}
                   </p>
@@ -83,8 +97,12 @@ export default function Contact() {
                   <Mail className="w-6 h-6 text-amber-600 dark:text-amber-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">Email</h3>
-                  <p className="text-gray-600 dark:text-gray-400">{contactInfo.email}</p>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    Email
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {contactInfo.email}
+                  </p>
                   <p className="text-sm text-gray-500 dark:text-gray-500">
                     Ответим в течение часа
                   </p>
@@ -96,7 +114,9 @@ export default function Contact() {
                   <Clock className="w-6 h-6 text-green-600 dark:text-green-400" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900 dark:text-white">Режим работы</h3>
+                  <h3 className="font-semibold text-gray-900 dark:text-white">
+                    Режим работы
+                  </h3>
                   <p className="text-gray-600 dark:text-gray-400">
                     {contactInfo.workHours.weekdays}
                   </p>

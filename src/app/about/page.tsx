@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     siteName: 'Дезинфект',
     images: [
       {
-        url: `${SITE_URL}/og1.png`,
-        secureUrl: `${SITE_URL}/og1.png`,
+        url: `${SITE_URL}/og`,
+        secureUrl: `${SITE_URL}/og`,
         width: 1200,
         height: 630,
         alt: 'О компании Дезинфект',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: 'О компании | Дезинфект',
     description:
       'Более 10 лет профессиональной дезинфекции, дезинсекции и дератизации.',
-    images: [`${SITE_URL}/og1.png`],
+    images: [`${SITE_URL}/og`],
   },
 };
 

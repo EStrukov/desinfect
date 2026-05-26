@@ -7,21 +7,26 @@ import { ContactModal } from '@/components/ui/ContactModal/ContactModal';
 import { ServiceCard } from '@/components/ui/ServiceCard/ServiceCard';
 import { services } from '@/lib/servicesConfig';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL 
-  || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://desinfect.vercel.app');
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://desinfect.vercel.app');
 
 export const metadata: Metadata = {
   title: 'Услуги',
-  description: 'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области. Обработка от насекомых, грызунов, плесени и бактерий. Гарантия качества.',
+  description:
+    'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области. Обработка от насекомых, грызунов, плесени и бактерий. Гарантия качества.',
   openGraph: {
     title: 'Услуги по дезинфекции | Дезинфект',
-    description: 'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области. Обработка от насекомых, грызунов, плесени и бактерий.',
+    description:
+      'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области. Обработка от насекомых, грызунов, плесени и бактерий.',
     url: `${SITE_URL}/services`,
     siteName: 'Дезинфект',
     images: [
       {
-        url: `${SITE_URL}/og1.png`,
-        secureUrl: `${SITE_URL}/og1.png`,
+        url: `${SITE_URL}/og`,
+        secureUrl: `${SITE_URL}/og`,
         width: 1200,
         height: 630,
         alt: 'Услуги Дезинфект — профессиональная обработка',
@@ -34,8 +39,9 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Услуги по дезинфекции | Дезинфект',
-    description: 'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
-    images: [`${SITE_URL}/og1.png`],
+    description:
+      'Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
+    images: [`${SITE_URL}/og`],
   },
 };
 
@@ -71,14 +77,10 @@ export default function Services() {
           </Lead>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <ContactModal
-              trigger={
-                <Button variant="default">Связаться с нами</Button>
-              }
+              trigger={<Button variant="default">Связаться с нами</Button>}
             />
             <Link href="/pricing">
-              <Button variant="outline">
-                Посмотреть цены
-              </Button>
+              <Button variant="outline">Посмотреть цены</Button>
             </Link>
           </div>
         </div>

@@ -10,31 +10,37 @@ import { FloatingContactButton } from '@/components/ui/FloatingContactButton/Flo
 
 const inter = Inter({ subsets: ['latin'] });
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL 
-  || (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://desinfect.vercel.app');
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'https://desinfect.vercel.app');
 
-const OG_IMAGE_URL = `${SITE_URL}/og1.png`;
+const OG_DYNAMIC_URL = `${SITE_URL}/og`;
 const FAVICON_URL = `${SITE_URL}/favicon.ico`;
 
 export const metadata: Metadata = {
   title: {
-    default: 'Дезинфект | Профессиональная дезинфекция, дезинсекция и дератизация',
+    default:
+      'Дезинфект | Профессиональная дезинфекция, дезинсекция и дератизация',
     template: '%s | Дезинфект',
   },
-  description: 'Избавим вас от мелких и больших неприятностей! Профессиональная обработка помещений от насекомых, грызунов и бактерий. Гарантия качества. Работаем по Минску и области.',
-  
+  description:
+    'Избавим вас от мелких и больших неприятностей! Профессиональная обработка помещений от насекомых, грызунов и бактерий. Гарантия качества. Работаем по Минску и области.',
+
   metadataBase: new URL(SITE_URL),
-  
+
   // Open Graph (Facebook, LinkedIn, Viber, WhatsApp, Telegram, Slack, Discord)
   openGraph: {
     title: 'Дезинфект | Профессиональная обработка помещений',
-    description: 'Избавим вас от мелких и больших неприятностей! Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
+    description:
+      'Избавим вас от мелких и больших неприятностей! Профессиональная дезинфекция, дезинсекция и дератизация в Минске и области.',
     url: SITE_URL,
     siteName: 'Дезинфект',
     images: [
       {
-        url: OG_IMAGE_URL,
-        secureUrl: OG_IMAGE_URL,
+        url: OG_DYNAMIC_URL,
+        secureUrl: OG_DYNAMIC_URL,
         width: 1200,
         height: 630,
         alt: 'Дезинфект — профессиональная обработка',
@@ -49,17 +55,17 @@ export const metadata: Metadata = {
     phoneNumbers: ['+375291234567'],
     countryName: 'Belarus',
   },
-  
+
   // Twitter/X
   twitter: {
     card: 'summary_large_image',
     title: 'Дезинфект | Профессиональная обработка',
     description: 'Избавим вас от мелких и больших неприятностей!',
-    images: [OG_IMAGE_URL],
+    images: [OG_DYNAMIC_URL],
     site: '@desinfect_by',
     creator: '@desinfect_by',
   },
-  
+
   // Robots
   robots: {
     index: true,
@@ -72,7 +78,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  
+
   // Иконки
   icons: {
     icon: [
@@ -87,39 +93,39 @@ export const metadata: Metadata = {
       { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#10b981' },
     ],
   },
-  
+
   // Apple
   appleWebApp: {
     capable: true,
     title: 'Дезинфект',
     statusBarStyle: 'black-translucent',
   },
-  
+
   // Format detection
   formatDetection: {
     telephone: true,
     email: true,
     address: true,
   },
-  
+
   // Верификация поисковых систем
   verification: {
     google: 'your-google-verification-code',
     yandex: 'your-yandex-verification-code',
     me: ['@desinfect_by'], // для Mastodon
   },
-  
+
   // Другие метатеги
   category: 'Услуги дезинфекции',
   authors: [{ name: 'Дезинфект', url: SITE_URL }],
   creator: 'Дезинфект',
   publisher: 'Дезинфект',
-  
+
   // Альтернативные языки (опционально)
   alternates: {
     canonical: '/',
     languages: {
-      'ru': '/',
+      ru: '/',
       // 'be': '/be',
       // 'en': '/en',
     },
