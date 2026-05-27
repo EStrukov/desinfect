@@ -23,14 +23,11 @@ export function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Логотип */}
           <Logo />
 
-          {/* Правая часть */}
           <div className="flex items-center gap-2">
-            {/* Телефон */}
             <a
               href={`tel:${contactInfo.phone}`}
               className="hidden md:inline-flex text-sm text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-blue-400 transition-colors font-medium mr-2"
@@ -38,10 +35,8 @@ export function Header() {
               {contactInfo.phone}
             </a>
 
-            {/* Переключатель темы */}
             <ThemeToggle />
 
-            {/* Бургер-меню */}
             <Button
               variant="ghost"
               size="icon"
@@ -58,7 +53,6 @@ export function Header() {
         </div>
       </div>
 
-      {/* Мобильное меню */}
       {isMenuOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
           <div className="px-4 py-3 space-y-1">
