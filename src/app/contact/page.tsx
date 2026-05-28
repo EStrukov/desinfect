@@ -51,9 +51,6 @@ export default function Contact() {
                   <p className="text-gray-600 dark:text-gray-400">
                     {contactInfo.phone}
                   </p>
-                  <p className="text-sm text-gray-500 dark:text-gray-500">
-                    {contactInfo.workHours.emergency}
-                  </p>
                 </div>
               </div>
 
@@ -87,9 +84,6 @@ export default function Contact() {
                   </p>
                   <p className="text-gray-600 dark:text-gray-400">
                     {contactInfo.workHours.weekends}
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    {contactInfo.workHours.emergency}
                   </p>
                 </div>
               </div>

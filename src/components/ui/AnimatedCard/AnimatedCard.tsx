@@ -20,7 +20,7 @@ export const AnimatedCard: React.FC<AnimatedCardProps> = ({
     <div
       ref={ref}
       className={`${className} ${isVisible ? 'animate-in' : 'opacity-0'}`}
-      style={isVisible ? { animationDelay: `${index * 150}ms` } : undefined}
+      style={isVisible ? { animationDelay: `${index * 100}ms` } : undefined}
     >
       {children}
     </div>

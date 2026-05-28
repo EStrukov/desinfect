@@ -11,24 +11,27 @@ interface ServiceCardProps {
 }
 
 const bgColorMap: Record<string, string> = {
-  primary: 'bg-primary-light dark:bg-primary-light/30',
-  secondary: 'bg-secondary-light dark:bg-secondary-light/30',
-  accent: 'bg-accent-light dark:bg-accent-light/30',
+  primary: 'bg-blue-100 dark:bg-blue-900/40',
+  secondary: 'bg-green-100 dark:bg-green-900/40',
+  accent: 'bg-amber-100 dark:bg-amber-900/40',
 };
 
 const iconColorMap: Record<string, string> = {
-  primary: 'text-primary dark:text-primary-dark',
-  secondary: 'text-secondary dark:text-secondary-dark',
-  accent: 'text-accent dark:text-accent-dark',
+  primary: 'text-blue-600 dark:text-blue-400',
+  secondary: 'text-green-600 dark:text-green-400',
+  accent: 'text-amber-600 dark:text-amber-400',
 };
 
 const titleColorMap: Record<string, string> = {
-  primary: 'text-primary dark:text-primary-dark',
-  secondary: 'text-secondary dark:text-secondary-dark',
-  accent: 'text-accent dark:text-accent-dark',
+  primary: 'text-blue-600 dark:text-blue-400',
+  secondary: 'text-green-600 dark:text-green-400',
+  accent: 'text-amber-600 dark:text-amber-400',
 };
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ data, index = 0 }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = ({
+  data,
+  index = 0,
+}) => {
   const { ref, isVisible } = useInView<HTMLDivElement>();
   const { title, description, icon, benefits, colorClass } = data;
   const Icon = iconMap[icon];

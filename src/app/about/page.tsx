@@ -36,8 +36,8 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <AnimatedCard className="card text-center" index={0}>
-              <div className="w-16 h-16 bg-primary-light dark:bg-primary-light/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-primary dark:text-primary-dark" />
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/40 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-8 h-8 text-blue-600 dark:text-blue-400" />
               </div>
               <H3 className="mb-3">Качество</H3>
               <P>
@@ -47,8 +47,8 @@ export default function AboutPage() {
             </AnimatedCard>
 
             <AnimatedCard className="card text-center" index={1}>
-              <div className="w-16 h-16 bg-secondary-light dark:bg-secondary-light/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Globe className="w-8 h-8 text-secondary dark:text-secondary-dark" />
+              <div className="w-16 h-16 bg-green-100 dark:bg-green-900/40 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Globe className="w-8 h-8 text-green-600 dark:text-green-400" />
               </div>
               <H3 className="mb-3">Экологичность</H3>
               <P>
@@ -58,8 +58,8 @@ export default function AboutPage() {
             </AnimatedCard>
 
             <AnimatedCard className="card text-center" index={2}>
-              <div className="w-16 h-16 bg-accent-light dark:bg-accent-light/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Clock className="w-8 h-8 text-accent dark:text-accent-dark" />
+              <div className="w-16 h-16 bg-amber-100 dark:bg-amber-900/40 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Clock className="w-8 h-8 text-amber-600 dark:text-amber-400" />
               </div>
               <H3 className="mb-3">Оперативность</H3>
               <P>

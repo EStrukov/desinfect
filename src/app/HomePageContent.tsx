@@ -8,9 +8,16 @@ import { AnimatedCard } from '@/components/ui/AnimatedCard/AnimatedCard';
 import { Slider } from '@/components/ui/Slider/Slider';
 
 const slides = [
+  { src: '/assets/hero-banner.webp', alt: 'Профессиональная дезинфекция' },
   { src: '/assets/slides/desinfection.webp', alt: 'Дезинфекция помещений' },
-  { src: '/assets/slides/desinsect.webp', alt: 'Дезинсекция — борьба с насекомыми' },
-  { src: '/assets/slides/deratization.webp', alt: 'Дератизация — уничтожение грызунов' },
+  {
+    src: '/assets/slides/desinsect.webp',
+    alt: 'Дезинсекция — борьба с насекомыми',
+  },
+  {
+    src: '/assets/slides/deratization.webp',
+    alt: 'Дератизация — уничтожение грызунов',
+  },
 ];
 
 export default function HomePageContent() {
@@ -35,11 +42,7 @@ export default function HomePageContent() {
               trigger={<Button variant="default">Заказать услугу</Button>}
             />
             <ContactModal
-              trigger={
-                <Button variant="outline">
-                  Получить консультацию
-                </Button>
-              }
+              trigger={<Button variant="outline">Получить консультацию</Button>}
             />
           </div>
         </div>
@@ -84,19 +87,31 @@ export default function HomePageContent() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <AnimatedCard index={0}>
-              <div className="text-4xl font-bold text-primary dark:text-blue-400 mb-2">5000+</div>
-              <div className="text-gray-600 dark:text-gray-400">Довольных клиентов</div>
+              <div className="text-4xl font-bold text-primary dark:text-blue-400 mb-2">
+                5000+
+              </div>
+              <div className="text-gray-600 dark:text-gray-400">
+                Довольных клиентов
+              </div>
             </AnimatedCard>
             <AnimatedCard index={1}>
-              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">10+</div>
+              <div className="text-4xl font-bold text-green-600 dark:text-green-400 mb-2">
+                10+
+              </div>
               <div className="text-gray-600 dark:text-gray-400">Лет опыта</div>
             </AnimatedCard>
             <AnimatedCard index={2}>
-              <div className="text-4xl font-bold text-amber-600 dark:text-amber-400 mb-2">98%</div>
-              <div className="text-gray-600 dark:text-gray-400">Эффективность</div>
+              <div className="text-4xl font-bold text-amber-600 dark:text-amber-400 mb-2">
+                98%
+              </div>
+              <div className="text-gray-600 dark:text-gray-400">
+                Эффективность
+              </div>
             </AnimatedCard>
             <AnimatedCard index={3}>
-              <div className="text-4xl font-bold text-primary dark:text-blue-400 mb-2">24/7</div>
+              <div className="text-4xl font-bold text-primary dark:text-blue-400 mb-2">
+                24/7
+              </div>
               <div className="text-gray-600 dark:text-gray-400">Поддержка</div>
             </AnimatedCard>
           </div>

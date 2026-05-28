@@ -19,7 +19,7 @@ export function useInView<T extends HTMLElement = HTMLDivElement>(
           observer.unobserve(el);
         }
       },
-      { threshold: 0.30, ...options },
+      { threshold: 0.2, ...options },
     );
 
     observer.observe(el);
