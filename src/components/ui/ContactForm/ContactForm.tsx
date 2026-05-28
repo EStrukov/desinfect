@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useActionState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Loader2, Check, X, Shield, Clock } from 'lucide-react';
 import { Button } from '../Button/Button';
 import { FormField } from '../FormField/FormField';
@@ -12,10 +12,11 @@ interface ContactFormProps {
   className?: string;
 }
 
-interface FormState {
-  success?: boolean;
-  message?: string;
-  error?: string;
+interface FormData {
+  firstName: string;
+  phone: string;
+  service: string;
+  message: string;
 }
 
 export function ContactForm({
@@ -24,6 +25,13 @@ export function ContactForm({
   showTitle = true,
   className = '',
 }: ContactFormProps) {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    phone: '',
+    service: '',
+    message: '',
+  });
+  const [isPending, setIsPending] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
     message: string;
@@ -36,7 +44,9 @@ export function ContactForm({
   const formRef = useRef<HTMLFormElement>(null);
 
   const generateToken = () => {
-    return Math.random().toString(36).substring(2, 15) + Date.now().toString(36);
+    return (
+      Math.random().toString(36).substring(2, 15) + Date.now().toString(36)
+    );
   };
 
   const [formToken] = useState(generateToken);
@@ -48,19 +58,24 @@ export function ContactForm({
     }
   }, [isRateLimited]);
 
+  const updateField = (field: keyof FormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
   const checkRateLimit = (): boolean => {
     const now = Date.now();
     const timeSinceLastSubmit = now - lastSubmitTime;
-    
+
     if (submitCount >= 3 && timeSinceLastSubmit < 300000) {
       setIsRateLimited(true);
       setSubmitStatus({
         type: 'error',
-        message: 'Слишком много заявок. Пожалуйста, подождите 5 минут перед следующей отправкой.',
+        message:
+          'Слишком много заявок. Пожалуйста, подождите 5 минут перед следующей отправкой.',
       });
       return false;
     }
-    
+
     if (timeSinceLastSubmit < 30000 && submitCount > 0) {
       setSubmitStatus({
         type: 'error',
@@ -68,57 +83,44 @@ export function ContactForm({
       });
       return false;
     }
-    
+
     return true;
   };
 
-  const handleSubmit = async (prevState: FormState | null, formData: FormData): Promise<FormState> => {
-    if (!checkRateLimit()) {
-      return { success: false, error: 'Rate limit exceeded' };
-    }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-    const honeypot = formData.get('_website');
-    if (honeypot && honeypot.toString().length > 0) {
-      console.log('Honeypot triggered — bot detected');
+    if (!checkRateLimit()) return;
+
+    // Honeypot
+    if (honeypotValue.length > 0) {
       setSubmitStatus({
         type: 'success',
-        message: 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
+        message:
+          'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
       });
-      return { success: true, message: 'Bot detected and ignored' };
+      return;
     }
 
-    const token = formData.get('_token');
-    if (token !== formToken) {
-      setSubmitStatus({
-        type: 'error',
-        message: 'Неверный токен безопасности. Пожалуйста, обновите страницу и попробуйте снова.',
-      });
-      return { success: false, error: 'Invalid token' };
-    }
-
-    const data = Object.fromEntries(formData.entries());
-    
-    if (!data.firstName || (data.firstName as string).trim().length < 2) {
+    // Client-side validation
+    if (formData.firstName.trim().length < 2) {
       setSubmitStatus({
         type: 'error',
         message: 'Пожалуйста, введите корректное имя (минимум 2 символа).',
       });
-      return { success: false, error: 'Invalid name' };
+      return;
     }
 
-    if (!data.phone || (data.phone as string).replace(/\D/g, '').length < 9) {
+    if (formData.phone.replace(/\D/g, '').length < 9) {
       setSubmitStatus({
         type: 'error',
         message: 'Пожалуйста, введите корректный номер телефона.',
       });
-      return { success: false, error: 'Invalid phone' };
+      return;
     }
 
-    delete data._website;
-    delete data._token;
-    delete data._timestamp;
-
-    setSubmitCount(prev => prev + 1);
+    setIsPending(true);
+    setSubmitCount((prev) => prev + 1);
     setLastSubmitTime(Date.now());
 
     try {
@@ -126,7 +128,11 @@ export function ContactForm({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ...data,
+          firstName: formData.firstName,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+          _token: formToken,
           _timestamp: Date.now(),
           _userAgent: navigator.userAgent,
         }),
@@ -137,36 +143,36 @@ export function ContactForm({
       if (response.ok && result.success) {
         setSubmitStatus({
           type: 'success',
-          message: result.message || 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
+          message:
+            result.message ||
+            'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
         });
 
-        if (onSubmit) onSubmit(data);
+        if (onSubmit) onSubmit(formData);
 
         setTimeout(() => {
           if (onClose) onClose();
         }, 3000);
-
-        return { success: true, message: result.message };
       } else {
-        const errorMessage = result.error || 'Произошла ошибка при отправке заявки. Попробуйте еще раз.';
+        const errorMessage =
+          result.error ||
+          'Произошла ошибка при отправке заявки. Попробуйте еще раз.';
         setSubmitStatus({
           type: 'error',
           message: errorMessage,
         });
-        return { success: false, error: errorMessage };
       }
     } catch (error) {
       console.error('Form submission error:', error);
-      const errorMessage = 'Произошла ошибка при отправке заявки. Проверьте подключение к интернету и попробуйте еще раз.';
       setSubmitStatus({
         type: 'error',
-        message: errorMessage,
+        message:
+          'Произошла ошибка при отправке заявки. Проверьте подключение к интернету и попробуйте еще раз.',
       });
-      return { success: false, error: errorMessage };
+    } finally {
+      setIsPending(false);
     }
   };
-
-  const [state, formAction, isPending] = useActionState(handleSubmit, null);
 
   return (
     <div className={className}>
@@ -187,7 +193,11 @@ export function ContactForm({
         </div>
       )}
 
-      <form ref={formRef} action={formAction} className="space-y-4 md:space-y-6">
+      <form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        className="space-y-4 md:space-y-6"
+      >
         <div className="hidden">
           <label htmlFor="_website">Website</label>
           <input
@@ -201,9 +211,16 @@ export function ContactForm({
           />
         </div>
 
-        <input type="hidden" name="_token" value={formToken} />
-
-        <FormField label="Имя" name="firstName" required autoFocus />
+        <FormField
+          label="Имя"
+          name="firstName"
+          required
+          autoFocus
+          value={formData.firstName}
+          onChange={(e) =>
+            updateField('firstName', (e.target as HTMLInputElement).value)
+          }
+        />
         <FormField
           label="Телефон"
           name="phone"
@@ -211,9 +228,21 @@ export function ContactForm({
           inputMode="tel"
           placeholder="+375 __ ___-__-__"
           required
+          value={formData.phone}
+          onChange={(e) =>
+            updateField('phone', (e.target as HTMLInputElement).value)
+          }
         />
 
-        <FormField label="Тип услуги" name="service" type="select">
+        <FormField
+          label="Тип услуги"
+          name="service"
+          type="select"
+          value={formData.service}
+          onChange={(e) =>
+            updateField('service', (e.target as HTMLSelectElement).value)
+          }
+        >
           <option value="">Выберите услугу</option>
           <option value="desinfection">Дезинфекция помещений</option>
           <option value="desinsection">Дезинсекция</option>
@@ -229,9 +258,17 @@ export function ContactForm({
           type="textarea"
           rows={3}
           placeholder="Опишите вашу проблему или задайте вопрос..."
+          value={formData.message}
+          onChange={(e) =>
+            updateField('message', (e.target as HTMLTextAreaElement).value)
+          }
         />
 
-        <Button type="submit" variant="default" disabled={isPending || isRateLimited}>
+        <Button
+          type="submit"
+          variant="default"
+          disabled={isPending || isRateLimited}
+        >
           {isPending ? (
             <div className="flex items-center gap-2">
               <Loader2 className="animate-spin h-4 w-4" />
