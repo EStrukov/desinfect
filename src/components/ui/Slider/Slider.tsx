@@ -1,25 +1,29 @@
 'use client';
 
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 
 interface SliderProps {
   slides: { src: string; alt?: string }[];
   autoplayInterval?: number;
+  gap?: number;
 }
 
 export const Slider: React.FC<SliderProps> = ({
   slides,
   autoplayInterval = 4000,
+  gap = 8,
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: 'center',
     skipSnaps: false,
+    containScroll: 'trimSnaps',
   });
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
@@ -34,47 +38,69 @@ export const Slider: React.FC<SliderProps> = ({
     };
   }, [emblaApi, onSelect]);
 
-  const autoplay = useCallback(() => {
+  const stopAutoplay = useCallback(() => {
+    if (intervalRef.current !== null) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+
+  const startAutoplay = useCallback(() => {
+    stopAutoplay();
     if (!emblaApi) return;
-    const timer = setInterval(() => {
+
+    intervalRef.current = setInterval(() => {
       emblaApi.scrollNext();
     }, autoplayInterval);
-    return () => clearInterval(timer);
-  }, [emblaApi, autoplayInterval]);
+  }, [emblaApi, autoplayInterval, stopAutoplay]);
 
   useEffect(() => {
-    const cleanup = autoplay();
-    return () => cleanup?.();
-  }, [autoplay]);
+    startAutoplay();
+    return stopAutoplay;
+  }, [startAutoplay, stopAutoplay]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [startAutoplay, stopAutoplay]);
 
   if (slides.length === 0) return null;
 
   return (
-    <div className="relative w-full max-w-5xl mx-auto px-0 md:px-8">
+    <div className="relative w-full mx-auto px-0">
       <div
-        className="overflow-hidden rounded-2xl shadow-lg md:shadow-xl mx-2 md:mx-0"
+        className="overflow-hidden rounded-2xl shadow-lg md:shadow-xl mx-0"
         ref={emblaRef}
       >
-        <div className="flex">
+        <div
+          className="flex"
+          style={{ marginLeft: -(gap / 2), marginRight: -(gap / 2) }}
+        >
           {slides.map((slide, index) => (
-            <div key={index} className="flex-[0_0_100%] min-w-0 relative">
+            <div
+              key={index}
+              className="flex-[0_0_100%] sm:flex-[0_0_80%] min-w-0 relative aspect-video"
+              style={{ paddingLeft: gap / 2, paddingRight: gap / 2 }}
+            >
               <Image
                 src={slide.src}
                 alt={slide.alt || `Slide ${index + 1}`}
                 width={1200}
-                height={560}
-                className="w-full h-52 xs:h-64 sm:h-80 md:h-[480px] lg:h-[560px] object-cover select-none pointer-events-none"
+                height={675}
+                className="w-full h-full object-cover select-none pointer-events-none rounded-md"
                 loading={index === 0 ? 'eager' : 'lazy'}
                 draggable={false}
               />
-
-              {/* <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent pointer-events-none" />
-
-              <div className="absolute bottom-3 left-3 right-3 md:bottom-4 md:left-4 md:right-4 text-center">
-                <span className="inline-block text-white text-xs sm:text-sm font-medium tracking-wide px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full bg-black/40 backdrop-blur-sm md:bg-black/30">
-                  {slide.alt}
-                </span>
-              </div> */}
             </div>
           ))}
         </div>

@@ -1,6 +1,8 @@
 import { H1, H2, H3, P, Lead } from '@/components/ui/Typography/Typography';
 import { CheckCircle, Globe, Clock } from 'lucide-react';
 import { AnimatedCard } from '@/components/ui/AnimatedCard/AnimatedCard';
+import { ReviewsSection } from '@/components/ui/ReviewsSection/ReviewsSection';
+import { reviews } from '@/lib/reviewsConfig';
 import { createPageMetadata, getSiteUrl } from '@/lib/og';
 
 const SITE_URL = getSiteUrl();
@@ -68,6 +70,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <ReviewsSection reviews={reviews} />
     </div>
   );
 }

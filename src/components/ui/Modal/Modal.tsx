@@ -30,11 +30,21 @@ export function Modal({
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = '0';
+      document.body.style.left = '0';
+      document.body.style.touchAction = 'none';
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.touchAction = '';
     };
   }, [isOpen, onClose]);
 
@@ -42,17 +52,16 @@ export function Modal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
-      {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
       />
 
-      {/* Modal */}
-      <div className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
-        {/* Header */}
+      <div className="relative bg-white dark:bg-gray-800 sm:rounded-lg sm:shadow-xl sm:max-w-md sm:w-full sm:mx-4 sm:max-h-[90vh] overflow-y-auto w-full h-full max-w-none max-h-none rounded-none sm:inset-auto inset-0">
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{title}</h2>
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+            {title}
+          </h2>
           {showCloseButton &&
             (customCloseButton ? (
               customCloseButton
@@ -66,7 +75,6 @@ export function Modal({
             ))}
         </div>
 
-        {/* Content */}
         <div className="p-6">{children}</div>
       </div>
     </div>

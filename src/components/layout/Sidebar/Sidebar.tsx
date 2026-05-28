@@ -25,7 +25,7 @@ export const Sidebar = memo(function Sidebar() {
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
-      <nav className="flex flex-col h-full py-4">
+      <nav className="flex flex-col h-full">
         <div className="space-y-1">
           {sidebarItems.map((item) => {
             const Icon = item.icon;
@@ -45,7 +45,6 @@ export const Sidebar = memo(function Sidebar() {
                   }
                 `}
               >
-                {/* Иконка всегда шириной 64px, по центру — 16px иконка */}
                 <div className="flex items-center justify-center w-16 h-10 flex-shrink-0">
                   <Icon
                     className={`h-5 w-5 transition-colors duration-200 ${
