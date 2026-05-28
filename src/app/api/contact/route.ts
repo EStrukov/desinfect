@@ -11,7 +11,7 @@ const submissionLog = new Map<string, number[]>();
 setInterval(() => {
   const now = Date.now();
   for (const [ip, timestamps] of submissionLog.entries()) {
-    const recent = timestamps.filter(t => now - t < 300000); // 5 минут
+    const recent = timestamps.filter((t) => now - t < 300000); // 5 минут
     if (recent.length === 0) {
       submissionLog.delete(ip);
     } else {
@@ -23,27 +23,29 @@ setInterval(() => {
 function checkRateLimit(ip: string): { allowed: boolean; message?: string } {
   const now = Date.now();
   const userSubmissions = submissionLog.get(ip) || [];
-  
+
   // Очищаем старые записи (старше 5 минут)
-  const recentSubmissions = userSubmissions.filter(time => now - time < 300000);
-  
+  const recentSubmissions = userSubmissions.filter(
+    (time) => now - time < 300000,
+  );
+
   // Не более 3 отправок за 5 минут
   if (recentSubmissions.length >= 3) {
-    return { 
-      allowed: false, 
-      message: 'Слишком много запросов. Попробуйте через 5 минут.' 
+    return {
+      allowed: false,
+      message: 'Слишком много запросов. Попробуйте через 5 минут.',
     };
   }
-  
+
   // Не чаще 1 раза в 30 секунд
   const lastSubmission = recentSubmissions[recentSubmissions.length - 1];
   if (lastSubmission && now - lastSubmission < 30000) {
-    return { 
-      allowed: false, 
-      message: 'Пожалуйста, подождите 30 секунд перед следующей отправкой.' 
+    return {
+      allowed: false,
+      message: 'Пожалуйста, подождите 30 секунд перед следующей отправкой.',
     };
   }
-  
+
   recentSubmissions.push(now);
   submissionLog.set(ip, recentSubmissions);
   return { allowed: true };
@@ -85,30 +87,30 @@ async function sendTelegramMessage(message: string): Promise<boolean> {
 
 export async function POST(request: NextRequest) {
   try {
-    // Получаем IP адрес
-    const ip = request.headers.get('x-forwarded-for')?.split(',')[0] || 
-               request.headers.get('x-real-ip') || 
-               'unknown';
-    
+    // На Vercel реальный IP клиента в x-vercel-forwarded-for
+    // x-forwarded-for может содержать "1" (внутренний прокси)
+    const ip =
+      request.headers.get('x-vercel-forwarded-for') ||
+      request.headers.get('x-real-ip') ||
+      request.headers.get('x-forwarded-for')?.split(',')[0] ||
+      'unknown';
+
     // 1. Rate limiting
     const rateLimit = checkRateLimit(ip);
     if (!rateLimit.allowed) {
-      return NextResponse.json(
-        { error: rateLimit.message },
-        { status: 429 }
-      );
+      return NextResponse.json({ error: rateLimit.message }, { status: 429 });
     }
 
     const body = await request.json();
-    const { 
-      firstName, 
-      lastName, 
-      phone, 
-      service, 
+    const {
+      firstName,
+      lastName,
+      phone,
+      service,
       message,
       _token,
       _timestamp,
-      _userAgent 
+      _userAgent,
     } = body;
 
     // 2. Проверка токена (опционально, если передаётся с клиента)
@@ -123,7 +125,7 @@ export async function POST(request: NextRequest) {
     if (_timestamp && Date.now() - _timestamp > 300000) {
       return NextResponse.json(
         { error: 'Форма устарела. Обновите страницу и попробуйте снова.' },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -161,9 +163,8 @@ export async function POST(request: NextRequest) {
       other: 'Другое',
     };
 
-    const serviceName = service && service !== '' 
-      ? serviceMap[service] || service 
-      : 'Не указана';
+    const serviceName =
+      service && service !== '' ? serviceMap[service] || service : 'Не указана';
 
     const telegramMessage = `
 🔔 <b>Новая заявка с сайта!</b>
@@ -199,7 +200,8 @@ ${message && message.trim() ? `💬 <b>Сообщение:</b>\n${message.trim()
 
     return NextResponse.json({
       success: true,
-      message: 'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
+      message:
+        'Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.',
       telegramSent,
     });
   } catch (error) {
