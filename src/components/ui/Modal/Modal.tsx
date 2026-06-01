@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 
 interface ModalProps {
@@ -27,12 +28,15 @@ export function Modal({
       }
     };
 
+    let scrollY = 0;
+
     if (isOpen) {
+      scrollY = window.scrollY;
       document.addEventListener('keydown', handleEscape);
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
-      document.body.style.top = '0';
+      document.body.style.top = `-${scrollY}px`;
       document.body.style.left = '0';
       document.body.style.touchAction = 'none';
     }
@@ -45,12 +49,15 @@ export function Modal({
       document.body.style.top = '';
       document.body.style.left = '';
       document.body.style.touchAction = '';
+      if (isOpen) {
+        window.scrollTo(0, scrollY);
+      }
     };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
-  return (
+  const modal = (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
         className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -79,4 +86,6 @@ export function Modal({
       </div>
     </div>
   );
+
+  return createPortal(modal, document.body);
 }

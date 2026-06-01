@@ -2,7 +2,6 @@ export interface OGPageConfig {
   title: string;
   description: string;
   subtitle: string;
-  /** Путь к логотипу относительно SITE_URL */
   logo: string;
 }
 
