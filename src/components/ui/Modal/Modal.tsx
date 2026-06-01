@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
+import { H3 } from '../Typography/Typography';
 
 interface ModalProps {
   isOpen: boolean;
@@ -66,9 +67,9 @@ export function Modal({
 
       <div className="relative bg-white dark:bg-gray-800 sm:rounded-lg sm:shadow-xl sm:max-w-md sm:w-full sm:mx-4 sm:max-h-[90vh] overflow-y-auto w-full h-full max-w-none max-h-none rounded-none sm:inset-auto inset-0">
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
+          <H3 className="text-xl font-semibold text-gray-900 dark:text-white">
             {title}
-          </h2>
+          </H3>
           {showCloseButton &&
             (customCloseButton ? (
               customCloseButton

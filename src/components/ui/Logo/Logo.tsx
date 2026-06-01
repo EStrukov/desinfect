@@ -10,11 +10,11 @@ export function Logo({ variant = 'header' }: LogoProps) {
     return (
       <div className="flex items-center gap-3 mb-4">
         <Image
-          src="/assets/logo.webp"
+          src="/assets/logo_transparent.svg"
           alt="Дезинфект"
           width={48}
           height={48}
-          className="w-10 h-10 md:w-12 md:h-12 object-contain"
+          className="w-10 h-10 md:w-12 md:h-12 object-contain dark:[filter:brightness(0)_invert(1)]"
         />
         <div>
           <span className="text-xl font-bold text-gray-900 dark:text-white">
@@ -32,11 +32,11 @@ export function Logo({ variant = 'header' }: LogoProps) {
     <div className="flex items-center gap-3 flex-shrink-0">
       <Link href="/" className="flex items-center gap-3 group">
         <Image
-          src="/assets/logo.webp"
+          src="/assets/logo_transparent.svg"
           alt="Дезинфект"
           width={160}
           height={160}
-          className="h-8 md:h-10 w-auto object-contain"
+          className="h-8 md:h-10 w-auto object-contain dark:[filter:brightness(0)_invert(1)]"
         />
       </Link>
     </div>
