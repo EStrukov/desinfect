@@ -18,8 +18,8 @@ export const pricingCards: PricingCardData[] = [
   {
     id: '1-room',
     title: '1-комнатная квартира',
-    priceFrom: 2500,
-    priceFormatted: '2 500 BYN',
+    priceFrom: 250,
+    priceFormatted: '250 BYN',
     area: 'до 40 м²',
     features: [
       { text: 'Дезинфекция всех поверхностей' },
@@ -33,8 +33,8 @@ export const pricingCards: PricingCardData[] = [
   {
     id: '2-room',
     title: '2-комнатная квартира',
-    priceFrom: 3500,
-    priceFormatted: '3 500 BYN',
+    priceFrom: 350,
+    priceFormatted: '350 BYN',
     area: 'до 60 м²',
     features: [
       { text: 'Дезинфекция всех поверхностей' },
@@ -50,8 +50,8 @@ export const pricingCards: PricingCardData[] = [
   {
     id: '3-room',
     title: '3-комнатная квартира',
-    priceFrom: 4500,
-    priceFormatted: '4 500 BYN',
+    priceFrom: 450,
+    priceFormatted: '450 BYN',
     area: 'до 80 м²',
     features: [
       { text: 'Полная дезинфекция' },
@@ -66,8 +66,8 @@ export const pricingCards: PricingCardData[] = [
   {
     id: 'house',
     title: 'Частный дом',
-    priceFrom: 8000,
-    priceFormatted: '8 000 BYN',
+    priceFrom: 800,
+    priceFormatted: '800 BYN',
     area: 'от 100 м²',
     features: [
       { text: 'Обработка всех помещений' },
@@ -81,8 +81,8 @@ export const pricingCards: PricingCardData[] = [
   {
     id: 'office',
     title: 'Офис/магазин',
-    priceFrom: 5000,
-    priceFormatted: '5 000 BYN',
+    priceFrom: 500,
+    priceFormatted: '500 BYN',
     area: 'от 50 м²',
     features: [
       { text: 'Профессиональная обработка' },
@@ -96,8 +96,8 @@ export const pricingCards: PricingCardData[] = [
   {
     id: 'transport',
     title: 'Транспорт',
-    priceFrom: 1500,
-    priceFormatted: '1 500 BYN',
+    priceFrom: 150,
+    priceFormatted: '150 BYN',
     area: 'автомобиль/мотоцикл',
     features: [
       { text: 'Обработка салона' },
@@ -149,7 +149,7 @@ export const extraServices: ExtraServiceData[] = [
     id: 'check',
     title: 'Контрольная проверка',
     description: 'Через 14 дней',
-    price: '500 BYN',
+    price: '50 BYN',
     priceType: 'fixed',
     priceColor: 'primary',
   },
