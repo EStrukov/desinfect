@@ -65,7 +65,7 @@ export function Modal({
         onClick={onClose}
       />
 
-      <div className="relative bg-white dark:bg-gray-800 sm:rounded-lg sm:shadow-xl sm:max-w-md sm:w-full sm:mx-4 sm:max-h-[90vh] overflow-y-auto w-full h-full max-w-none max-h-none rounded-none sm:inset-auto inset-0">
+      <div className="relative bg-white dark:bg-gray-800 sm:rounded-lg sm:shadow-xl sm:max-w-md sm:w-full sm:mx-4 overflow-y-auto w-full h-full sm:h-fit max-w-none max-h-none rounded-none sm:inset-auto inset-0">
         <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
           <H3 className="text-xl font-semibold text-gray-900 dark:text-white">
             {title}

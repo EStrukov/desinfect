@@ -215,7 +215,6 @@ export function ContactForm({
           label="Имя"
           name="firstName"
           required
-          autoFocus
           value={formData.firstName}
           onChange={(e) =>
             updateField('firstName', (e.target as HTMLInputElement).value)
