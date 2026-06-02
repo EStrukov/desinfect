@@ -102,6 +102,7 @@ export default function RootLayout({
       </head>
       <body
         className={`${inter.className} bg-gray-50 dark:bg-gray-900 overflow-y-auto`}
+        suppressHydrationWarning
       >
         <Providers>
           <Header />
